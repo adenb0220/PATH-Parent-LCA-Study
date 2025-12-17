@@ -1,0 +1,600 @@
+Mplus VERSION 8.11 DEMO
+MUTHEN & MUTHEN
+12/16/2025   9:57 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  Class 3
+  DATA:
+  FILE = "C:/Users/chens/Desktop/useme_lca/mplus_lca_sm_w/lca_sm_w.dat";
+  VARIABLE:
+  NAMES = caseid p_rule_sm p_use_sm p_know p_rule_b p_use_b c_try_sm dem_gen dem_age
+       dem_inc dem_hisp weight;
+   MISSING=.;
+   categorical = p_rule_sm p_use_sm p_know p_rule_b p_use_b;
+  usevar = p_rule_sm p_use_sm p_know p_rule_b p_use_b;
+  weight = weight;
+  classes = c(3);
+  ANALYSIS:
+  estimator = mlr;
+      type = mixture;
+      starts = 1000 200;
+      processors = 10;
+  OUTPUT:
+  tech11 tech14;
+  PLOT:
+  type = plot3;
+       series = p_rule_sm p_use_sm p_know p_rule_b p_use_b(*);
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+*** WARNING in PLOT command
+  Note that only the first 8 characters of variable names are used in plots.
+  If variable names are not unique within the first 8 characters, problems
+  may occur.
+*** WARNING in OUTPUT command
+  TECH14 option is not available for TYPE=MIXTURE with weights.
+  Request for TECH14 is ignored.
+   3 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+Class 3
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        7301
+
+Number of dependent variables                                    5
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   P_RULE_S    P_USE_SM    P_KNOW      P_RULE_B    P_USE_B
+
+Categorical latent variables
+   C
+
+Variables with special functions
+
+  Weight variable       WEIGHT
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                       1000
+  Number of final stage optimizations                          200
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Link                                                         LOGIT
+
+Input data file(s)
+  C:/Users/chens/Desktop/useme_lca/mplus_lca_sm_w/lca_sm_w.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             5
+     Number of y missing data patterns           0
+     Number of u missing data patterns           5
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR U
+
+
+           Covariance Coverage
+              P_RULE_S      P_USE_SM      P_KNOW        P_RULE_B      P_USE_B
+              ________      ________      ________      ________      ________
+ P_RULE_S       0.995
+ P_USE_SM       0.995         1.000
+ P_KNOW         0.984         0.990         0.990
+ P_RULE_B       0.995         0.996         0.986         0.996
+ P_USE_B        0.995         1.000         0.990         0.996         1.000
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    P_RULE_S
+      Category 1    0.845         6136.811
+      Category 2    0.155         1126.803
+    P_USE_SM
+      Category 1    0.987         7202.491
+      Category 2    0.013           98.509
+    P_KNOW
+      Category 1    0.894         6462.369
+      Category 2    0.106          762.434
+    P_RULE_B
+      Category 1    0.872         6343.601
+      Category 2    0.128          930.094
+    P_USE_B
+      Category 1    0.843         6155.619
+      Category 2    0.157         1145.381
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+          -11215.104  881886           608
+          -11215.104  436460           89
+          -11215.104  432148           30
+          -11215.104  533738           11
+          -11215.104  608496           4
+          -11215.104  784664           75
+          -11215.104  575700           100
+          -11215.104  603842           61
+          -11215.104  730868           977
+          -11215.104  372176           23
+          -11215.104  399508           415
+          -11215.104  254551           996
+          -11215.104  313407           132
+          -11215.104  579138           706
+          -11215.104  990504           827
+          -11215.104  847088           750
+          -11215.104  840078           203
+          -11215.104  376411           473
+          -11215.104  21132            351
+          -11215.104  404510           442
+          -11215.104  302046           863
+          -11215.104  76974            16
+          -11215.104  484406           421
+          -11215.104  355254           796
+          -11215.104  782179           835
+          -11215.104  922042           492
+          -11215.104  416250           390
+          -11215.104  85734            411
+          -11215.104  783110           72
+          -11215.104  545108           667
+          -11215.104  399671           13
+          -11215.104  535303           923
+          -11215.104  197223           332
+          -11215.104  570782           193
+          -11215.104  869564           869
+          -11215.104  512836           289
+          -11215.104  928287           197
+          -11215.104  879211           453
+          -11215.104  647617           725
+          -11215.104  306768           978
+          -11215.104  789528           837
+          -11215.104  384199           882
+          -11215.104  937588           293
+          -11215.104  691041           590
+          -11215.104  791396           243
+          -11215.104  574942           558
+          -11215.104  448829           938
+          -11215.104  987090           70
+          -11215.104  738393           619
+          -11215.104  732596           320
+          -11215.104  351622           551
+          -11215.104  488581           688
+          -11215.104  318177           748
+          -11215.104  788796           145
+          -11215.104  155622           507
+          -11215.104  414284           158
+          -11215.104  545140           278
+          -11215.104  422103           62
+          -11215.104  328661           813
+          -11215.104  758647           951
+          -11215.104  408713           450
+          -11215.104  202790           198
+          -11215.104  246794           801
+          -11215.104  805935           615
+          -11215.104  802256           477
+          -11215.104  843555           952
+          -11215.104  914505           838
+          -11215.104  848590           694
+          -11215.104  573367           986
+          -11215.104  153053           378
+          -11215.104  147440           514
+          -11215.104  425929           508
+          -11215.104  779820           877
+          -11215.104  604861           800
+          -11215.104  329127           185
+          -11215.104  436892           565
+          -11215.104  208620           965
+          -11215.104  407108           366
+          -11215.104  933578           506
+          -11215.104  752769           253
+          -11215.104  420910           928
+          -11215.104  341041           34
+          -11215.104  252346           528
+          -11215.104  411615           171
+          -11215.104  857799           315
+          -11215.104  609089           241
+          -11215.104  347222           533
+          -11215.104  606576           151
+          -11215.104  710154           831
+          -11215.104  96941            890
+          -11215.104  483369           270
+          -11215.104  645664           39
+          -11215.104  331681           549
+          -11215.104  441191           361
+          -11267.432  266038           672
+          -11267.432  105435           265
+          -11267.432  710445           792
+          -11267.461  505879           424
+
+102 perturbed starting value run(s) did not converge or were rejected in the third stage.
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+     IN THE OPTIMIZATION, ONE OR MORE LOGIT THRESHOLDS APPROACHED EXTREME VALUES
+     OF -15.000 AND 15.000 AND WERE FIXED TO STABILIZE MODEL ESTIMATION.  THESE
+     VALUES IMPLY PROBABILITIES OF 0 AND 1.  IN THE MODEL RESULTS SECTION, THESE
+     PARAMETERS HAVE 0 STANDARD ERRORS AND 999 IN THE Z-SCORE AND P-VALUE COLUMNS.
+
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       17
+
+Loglikelihood
+
+          H0 Value                      -11215.104
+          H0 Scaling Correction Factor      1.0871
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   22464.208
+          Bayesian (BIC)                 22581.436
+          Sample-Size Adjusted BIC       22527.413
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes
+
+          Pearson Chi-Square
+
+          Value                             42.890
+          Degrees of Freedom                    14
+          P-Value                           0.0001
+
+          Likelihood Ratio Chi-Square
+
+          Value                             37.135
+          Degrees of Freedom                    14
+          P-Value                           0.0007
+
+Chi-Square Test for MCAR under the Unrestricted Latent Class Indicator Model
+
+          Pearson Chi-Square
+
+          Value                             46.814
+          Degrees of Freedom                    52
+          P-Value                           0.6774
+
+          Likelihood Ratio Chi-Square
+
+          Value                             35.720
+          Degrees of Freedom                    52
+          P-Value                           0.9586
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1        700.63563          0.09596
+       2       1329.68055          0.18212
+       3       5270.68382          0.72191
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1        700.63563          0.09596
+       2       1329.68055          0.18212
+       3       5270.68382          0.72191
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1              579          0.07928
+       2             1035          0.14179
+       3             5687          0.77893
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.745
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1        2        3
+
+    1   0.808    0.192    0.000
+    2   0.073    0.927    0.000
+    3   0.028    0.045    0.927
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2        3
+
+    1   0.668    0.107    0.225
+    2   0.084    0.722    0.195
+    3   0.000    0.000    1.000
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2        3
+
+    1      1.087   -0.740    0.000
+    2     -0.845    1.311    0.000
+    3    -13.816  -13.816    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ Thresholds
+    P_RULE_S$1        -0.869      0.216     -4.021      0.000
+    P_USE_SM$1         1.810      0.160     11.334      0.000
+    P_KNOW$1           1.986      0.157     12.651      0.000
+    P_RULE_B$1         1.952      0.359      5.432      0.000
+    P_USE_B$1         15.000      0.000    999.000    999.000
+
+Latent Class 2
+
+ Thresholds
+    P_RULE_S$1         0.075      0.085      0.882      0.378
+    P_USE_SM$1        15.000      0.000    999.000    999.000
+    P_KNOW$1           1.758      0.102     17.280      0.000
+    P_RULE_B$1        -0.557      0.120     -4.660      0.000
+    P_USE_B$1         -0.082      0.109     -0.755      0.450
+
+Latent Class 3
+
+ Thresholds
+    P_RULE_S$1        15.000      0.000    999.000    999.000
+    P_USE_SM$1        15.000      0.000    999.000    999.000
+    P_KNOW$1           2.277      0.055     41.354      0.000
+    P_RULE_B$1        15.000      0.000    999.000    999.000
+    P_USE_B$1          2.363      0.072     32.717      0.000
+
+Categorical Latent Variables
+
+ Means
+    C#1               -2.018      0.106    -18.952      0.000
+    C#2               -1.377      0.063    -21.891      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.112E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+RESULTS IN PROBABILITY SCALE
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ P_RULE_SM
+    Category 1         0.295      0.045      6.564      0.000
+    Category 2         0.705      0.045     15.658      0.000
+ P_USE_SM
+    Category 1         0.859      0.019     44.529      0.000
+    Category 2         0.141      0.019      7.285      0.000
+ P_KNOW
+    Category 1         0.879      0.017     52.778      0.000
+    Category 2         0.121      0.017      7.246      0.000
+ P_RULE_B
+    Category 1         0.876      0.039     22.378      0.000
+    Category 2         0.124      0.039      3.178      0.001
+ P_USE_B
+    Category 1         1.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
+
+Latent Class 2
+
+ P_RULE_SM
+    Category 1         0.519      0.021     24.326      0.000
+    Category 2         0.481      0.021     22.560      0.000
+ P_USE_SM
+    Category 1         1.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
+ P_KNOW
+    Category 1         0.853      0.013     66.841      0.000
+    Category 2         0.147      0.013     11.526      0.000
+ P_RULE_B
+    Category 1         0.364      0.028     13.158      0.000
+    Category 2         0.636      0.028     22.967      0.000
+ P_USE_B
+    Category 1         0.480      0.027     17.697      0.000
+    Category 2         0.520      0.027     19.210      0.000
+
+Latent Class 3
+
+ P_RULE_SM
+    Category 1         1.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
+ P_USE_SM
+    Category 1         1.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
+ P_KNOW
+    Category 1         0.907      0.005    195.201      0.000
+    Category 2         0.093      0.005     20.024      0.000
+ P_RULE_B
+    Category 1         1.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
+ P_USE_B
+    Category 1         0.914      0.006    160.960      0.000
+    Category 2         0.086      0.006     15.146      0.000
+
+
+LATENT CLASS INDICATOR ODDS RATIOS FOR THE LATENT CLASSES
+
+                                                95% C.I.
+                    Estimate       S.E.  Lower 2.5% Upper 2.5%
+
+Latent Class 1 Compared to Latent Class 2
+
+ P_RULE_S
+    Category > 1       2.572      0.626      1.596      4.145
+ P_USE_SM
+    Category > 1   *********      0.000  *********  *********
+ P_KNOW
+    Category > 1       0.796      0.164      0.531      1.193
+ P_RULE_B
+    Category > 1       0.081      0.032      0.037      0.178
+ P_USE_B
+    Category > 1       0.000      0.000      0.000      0.000
+
+Latent Class 1 Compared to Latent Class 3
+
+ P_RULE_S
+    Category > 1   *********      0.000  *********  *********
+ P_USE_SM
+    Category > 1   *********      0.000  *********  *********
+ P_KNOW
+    Category > 1       1.338      0.227      0.960      1.865
+ P_RULE_B
+    Category > 1   *********      0.000  *********  *********
+ P_USE_B
+    Category > 1       0.000      0.000      0.000      0.000
+
+Latent Class 2 Compared to Latent Class 3
+
+ P_RULE_S
+    Category > 1   *********      0.000  *********  *********
+ P_USE_SM
+    Category > 1       1.000      0.000      1.000      1.000
+ P_KNOW
+    Category > 1       1.681      0.207      1.320      2.141
+ P_RULE_B
+    Category > 1   *********      0.000  *********  *********
+ P_USE_B
+    Category > 1      11.535      1.582      8.816     15.093
+
+
+TECHNICAL 11 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                1000
+        Number of final stage optimizations                   200
+
+
+
+     VUONG-LO-MENDELL-RUBIN LIKELIHOOD RATIO TEST FOR 2 (H0) VERSUS 3 CLASSES
+
+          H0 Loglikelihood Value                       -11323.982
+          2 Times the Loglikelihood Difference            217.756
+          Difference in the Number of Parameters                6
+          Mean                                             -4.426
+          Standard Deviation                               13.861
+          P-Value                                          0.0000
+
+     LO-MENDELL-RUBIN ADJUSTED LRT TEST
+
+          Value                                           213.751
+          P-Value                                          0.0000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values)
+  Scatterplots (sample values)
+  Sample proportions and estimated probabilities
+
+     Beginning Time:  21:57:02
+        Ending Time:  21:57:15
+       Elapsed Time:  00:00:13
+
+
+Mplus VERSION 8.11 DEMO has the following limitations:
+  Maximum number of dependent variables: 6
+  Maximum number of independent variables: 2
+  Maximum number of between variables: 2
+  Maximum number of continuous latent variables in time series analysis: 2
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2024 Muthen & Muthen

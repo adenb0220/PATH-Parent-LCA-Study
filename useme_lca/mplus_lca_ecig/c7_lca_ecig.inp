@@ -1,0 +1,21 @@
+TITLE:
+Class 7
+DATA:
+FILE = "C:/Users/chens/Desktop/useme_lca/mplus_lca_ecig/lca_ecig.dat"; 
+VARIABLE:
+NAMES = caseid p_rule_ec p_use_ec p_know p_rule_b p_use_b c_try_ec dem_gen dem_age
+     dem_inc dem_hisp weight; 
+ MISSING=.;
+ categorical = p_rule_ec p_use_ec p_know p_rule_b p_use_b; 
+usevar = p_rule_ec p_use_ec p_know p_rule_b p_use_b;
+classes = c(7); 
+ANALYSIS:
+estimator = mlr; 
+    type = mixture;
+    starts = 1000 200; 
+    processors = 10;
+OUTPUT:
+tech11 tech14;
+PLOT:
+type = plot3; 
+     series = p_rule_ec p_use_ec p_know p_rule_b p_use_b(*);
