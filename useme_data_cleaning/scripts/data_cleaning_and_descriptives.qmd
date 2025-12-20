@@ -543,6 +543,49 @@ df %>%
   )
 ```
 
+# Investigate Polyuse
+
+```{r}
+# Check for e-cig + burned dual users (should be ~216)
+df %>%
+  filter(p_use_ec == "Yes" & p_use_b == "Yes") %>%
+  nrow()
+
+# Check for smokeless + burned dual users (should be ~71)
+df %>%
+  filter(p_use_sm == "Yes" & p_use_b == "Yes") %>%
+  nrow()
+
+# Check for e-cig + smokeless (no burned) (should be 0 or very low)
+df %>%
+  filter(p_use_ec == "Yes" & p_use_sm == "Yes" & p_use_b == "No") %>%
+  nrow()
+
+# Check for all three (triple users)
+df %>%
+  filter(p_use_ec == "Yes" & p_use_sm == "Yes" & p_use_b == "Yes") %>%
+  nrow()
+
+# Get ALL combinations
+df %>%
+  count(p_use_b, p_use_ec, p_use_sm) %>%
+  mutate(
+    pattern = case_when(
+      p_use_b == "No" & p_use_ec == "No" & p_use_sm == "No" ~ "Non-user",
+      p_use_b == "Yes" & p_use_ec == "No" & p_use_sm == "No" ~ "Burned only",
+      p_use_b == "No" & p_use_ec == "Yes" & p_use_sm == "No" ~ "E-cig only",
+      p_use_b == "No" & p_use_ec == "No" & p_use_sm == "Yes" ~ "Smokeless only",
+      p_use_b == "Yes" & p_use_ec == "Yes" & p_use_sm == "No" ~ "Burned + E-cig",
+      p_use_b == "Yes" & p_use_ec == "No" & p_use_sm == "Yes" ~ "Burned + Smokeless",
+      p_use_b == "No" & p_use_ec == "Yes" & p_use_sm == "Yes" ~ "E-cig + Smokeless (no burned)",
+      p_use_b == "Yes" & p_use_ec == "Yes" & p_use_sm == "Yes" ~ "All three (polytobacco)",
+      TRUE ~ "Other"
+    )
+  ) %>%
+  arrange(desc(n)) %>%
+  select(pattern, n, p_use_b, p_use_ec, p_use_sm)
+```
+
 # Final datasets
 
 ```{r}
