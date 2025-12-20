@@ -378,7 +378,7 @@ return(p)
 ```
 
 
-```{r, fig.width = 10.5, fig.height = 6.5}
+```{r, fig.width = 11, fig.height = 7}
 #| label: produce-c4-plot
 
 plot_lca_function(
