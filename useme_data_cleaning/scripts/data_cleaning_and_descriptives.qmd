@@ -1,0 +1,603 @@
+---
+title: "Data Cleaning and Descriptives Analysis"
+author: "Aden Bhagwat"
+format: 
+  html:
+    highlight-style: espresso
+    code-fold: true
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: load-packages-data
+#| include: false
+
+library(tidyverse)
+library(here)
+library(rio)
+library(knitr)
+library(gtsummary)
+# library(kableExtra)
+library(janitor)
+# library(scales)
+# library(survey)
+# library(modelsummary)
+#   options(modelsummary_factory_default = 'kableExtra')
+#   options(modelsummary_factory_latex = 'kableExtra')
+#   options(modelsummary_factory_html = 'kableExtra')
+# library(labelled)
+
+cbbPalette <- c("#009e73","#d55e00", "#A9A9A9", "#0072b999")
+
+# 1. Import data files
+df_main <- import(here("useme_data_cleaning/data/36498-7002-Data.rda"))
+df_weights <- import(here("useme_data_cleaning/data/36498-7332-Data.rda")) %>% 
+  select(PERSONID, R07_Y_C07WGT)
+df_linkage <- import(here("useme_data_cleaning/data/38008-0001-Data.rda")) %>% 
+  select(PERSONID, WAVE7_INTERVIEW, WAVE7_C07_WEIGHTS)
+
+```
+
+# Join weight files to person-level files
+
+```{r}
+#| results: false
+
+# 2. Clean PERSONID first and all column names
+df_main <- df_main %>% mutate(PERSONID = trimws(as.character(PERSONID))) %>% clean_names()
+df_weights <- df_weights %>% mutate(PERSONID = trimws(as.character(PERSONID))) %>% clean_names()
+df_linkage <- df_linkage %>% mutate(PERSONID = trimws(as.character(PERSONID))) %>% clean_names()
+
+# 3. Join all data into one table (no replicate weights)
+df <- df_main %>%
+  inner_join(df_weights, by = "personid") %>%
+  left_join(df_linkage, by = "personid")
+
+table(df$r07_youthtype)
+
+df<-df %>% 
+  filter(r07_youthtype == "(3) 3 = New cohort youth")
+
+df %>% 
+  summarise(n_unique = n_distinct(caseid))
+
+df %>% 
+  summarise(n_unique = n_distinct(personid))
+
+table(df$r07r_y_pt0001_v2, useNA="ifany")
+
+df <- df %>% 
+  filter(r07r_y_pt0001_v2 %in% c("(1) 1 = Biological mother", "(2) 2 = Biological father", "(3) 3 = Other"))
+
+str(df)
+
+df$r07_y_c07wgt
+
+
+```
+
+# Selecting Variables
+
+```{r}
+#| results: false
+
+df <- df %>% 
+  select(
+    # ID variables
+    caseid, personid, 
+    
+    # Weight
+    r07_y_c07wgt,
+    
+    # Parent rules variables
+    r07_pr1051,  # p_rule_ec
+    r07_pr1050,  # p_rule_sm
+    r07_pr1045,  # p_rule_b
+    
+    # Parent use variables (e-cig)
+    r07_pn0337_01,  # p_use_ecig
+    
+    # Parent use variables (smokeless - snus, smokeless, pouch, other oral)
+    r07_pn0336_01,  # p_use_snus
+    r07_pn0336_02,  # p_use_smokeless
+    r07_pn0339_01,  # p_use_pouch
+    r07_pn0339_02,  # p_use_other_oral
+    
+    # Parent use variables (burned - cigarettes, cigars, cigarillos, filtered, pipe, hookah)
+    r07_pn0335_01,  # p_use_cigarettes
+    r07_pn0335_02,  # p_use_cigar
+    r07_pn0335_03,  # p_use_cigarillo
+    r07_pn0335_04,  # p_use_filtered
+    r07_pn0335_05,  # p_use_pipe
+    r07_pn0335_06,  # p_use_hookah
+    
+    # Parent perception of youth tobacco use
+    r07_pt0021,  # p_youth_use_tobacco
+    
+    # Child heard of variables
+    r07_yv1001_nb,  # c_heard_of_ecig
+    r07_ys1001_nb,  # c_heard_of_smokeless
+    r07_ya1001np,   # c_heard_of_pouch
+    r07_ya1001ot,   # c_heard_of_oral_tobac
+    r07_yu1001_nb,  # c_heard_of_snus
+    
+    # Child tried/used variables (e-cig)
+    r07_yv1002_nb,  # c_beh_used_ecig_ever
+    
+    # Child tried/used variables (smokeless - snus, smokeless, pouches, oral nicotine)
+    r07_yu1002_nb,  # c_beh_used_snus_ever
+    r07_ys1002_nb,  # c_beh_used_smokeless_ever
+    r07_ya1002np,  # c_beh_used_pouches_ever
+    r07_ya1002ot,  # c_beh_used_oral_nicotine_ever
+    
+    # Child ever tobacco user
+    r07r_y_evr_tob,  # c_beh_ever_tobacco_user
+    
+    # Demographics
+    r07r_y_sex_imp,  # demographic_gender_imputed
+    r07r_y_agecat2,  # demographic_age_range
+    r07r_y_pm0130,  # demographic_household_income
+    r07r_y_hisp_imp  # demographic_hispanic_origin_imputed
+  ) %>%
+  rename(
+    weight = r07_y_c07wgt,
+    p_rule_ec = r07_pr1051,
+    p_rule_sm = r07_pr1050,
+    p_rule_b = r07_pr1045,
+    p_use_ecig = r07_pn0337_01,
+    p_use_snus = r07_pn0336_01,
+    p_use_smokeless = r07_pn0336_02,
+    p_use_pouch = r07_pn0339_01,
+    p_use_other_oral = r07_pn0339_02,
+    p_use_cigarettes = r07_pn0335_01,
+    p_use_cigar = r07_pn0335_02,
+    p_use_cigarillo = r07_pn0335_03,
+    p_use_filtered = r07_pn0335_04,
+    p_use_pipe = r07_pn0335_05,
+    p_use_hookah = r07_pn0335_06,
+    p_youth_use_tobacco = r07_pt0021,
+    c_heard_of_ecig = r07_yv1001_nb,
+    c_heard_of_smokeless = r07_ys1001_nb,
+    c_heard_of_pouch = r07_ya1001np,
+    c_heard_of_oral_tobac = r07_ya1001ot,
+    c_heard_of_snus = r07_yu1001_nb,
+    c_beh_used_ecig_ever = r07_yv1002_nb,
+    c_beh_used_snus_ever = r07_yu1002_nb,
+    c_beh_used_smokeless_ever = r07_ys1002_nb,
+    c_beh_used_pouches_ever = r07_ya1002np,
+    c_beh_used_oral_nicotine_ever = r07_ya1002ot,
+    c_beh_ever_tobacco_user = r07r_y_evr_tob,
+    demographic_gender_imputed = r07r_y_sex_imp,
+    demographic_age_range = r07r_y_agecat2,
+    demographic_household_income = r07r_y_pm0130,
+    demographic_hispanic_origin_imputed = r07r_y_hisp_imp
+  )
+
+str(df)
+rm(df_linkage)
+rm(df_main)
+rm(df_weights)
+
+#glimpse(df)
+```
+
+# Cleaning child outcome variables
+
+```{r}
+#| results: false
+
+# Clean child smokeless tobacco variables
+df <- df %>%
+  mutate(
+    # Clean smokeless
+    c_beh_used_smokeless_ever = case_when(
+      c_beh_used_smokeless_ever == "(1) 1 = Yes" ~ "Yes",
+      c_beh_used_smokeless_ever == "(2) 2 = No" ~ "No",
+      is.na(c_beh_used_smokeless_ever) & c_heard_of_smokeless == "(2) 2 = No" ~ "No",
+      TRUE ~ NA_character_
+    ),
+    # Clean snus
+    c_beh_used_snus_ever = case_when(
+      c_beh_used_snus_ever == "(1) 1 = Yes" ~ "Yes",
+      c_beh_used_snus_ever == "(2) 2 = No" ~ "No",
+      is.na(c_beh_used_snus_ever) & c_heard_of_snus == "(2) 2 = No" ~ "No",
+      TRUE ~ NA_character_
+    ),
+    # Clean pouches
+    c_beh_used_pouches_ever = case_when(
+      c_beh_used_pouches_ever == "(1) 1 = Yes" ~ "Yes",
+      c_beh_used_pouches_ever == "(2) 2 = No" ~ "No",
+      is.na(c_beh_used_pouches_ever) & c_heard_of_pouch == "(2) 2 = No" ~ "No",
+      TRUE ~ NA_character_
+    ),
+    # Clean oral nicotine
+    c_beh_used_oral_nicotine_ever = case_when(
+      c_beh_used_oral_nicotine_ever == "(1) 1 = Yes" ~ "Yes",
+      c_beh_used_oral_nicotine_ever == "(2) 2 = No" ~ "No",
+      is.na(c_beh_used_oral_nicotine_ever) & c_heard_of_oral_tobac == "(2) 2 = No" ~ "No",
+      TRUE ~ NA_character_
+    ),
+    # Create c_tried_smokeless
+    c_tried_smokeless = case_when(
+      c_beh_used_oral_nicotine_ever == "Yes" | 
+      c_beh_used_smokeless_ever == "Yes" | 
+      c_beh_used_pouches_ever == "Yes" | 
+      c_beh_used_snus_ever == "Yes" ~ "Yes",
+      c_beh_used_oral_nicotine_ever == "No" & 
+      c_beh_used_smokeless_ever == "No" & 
+      c_beh_used_pouches_ever == "No" & 
+      c_beh_used_snus_ever == "No" ~ "No",
+      TRUE ~ NA_character_
+    )
+  )
+
+table(df$c_tried_smokeless, useNA = "ifany")
+
+# Clean child e-cig variables
+df <- df %>%
+  mutate(
+    c_tried_ecig = case_when(
+      c_beh_used_ecig_ever == "(1) 1 = Yes" ~ "Yes",
+      c_beh_used_ecig_ever == "(2) 2 = No" ~ "No",
+      is.na(c_beh_used_ecig_ever) & c_heard_of_ecig == "(2) 2 = No" ~ "No",
+      TRUE ~ NA_character_
+    )
+  )
+
+table(df$c_tried_ecig, useNA = "ifany")
+```
+
+# Creating Parent Knowledge Variable
+
+```{r}
+#| results: false
+
+table(df$c_beh_ever_tobacco_user)
+table(df$p_youth_use_tobacco)
+
+df <- df %>%
+  mutate(
+    p_know = case_when(
+      # Parent is right
+      p_youth_use_tobacco %in% c("(1) 1 = You know that she / he / he or she has", 
+                                 "(2) 2 = You strongly suspect she / he / he or she has") & 
+        c_beh_ever_tobacco_user == "(1) 1 = Yes" ~ "Right",
+      p_youth_use_tobacco %in% c("(3) 3 = You don't think she / he / he or she has", 
+                                 "(4) 4 = You are confident she / he / he or she has not") & 
+        c_beh_ever_tobacco_user == "(2) 2 = No" ~ "Right",
+      # Parent is wrong
+      p_youth_use_tobacco %in% c("(1) 1 = You know that she / he / he or she has", 
+                                 "(2) 2 = You strongly suspect she / he / he or she has") & 
+        c_beh_ever_tobacco_user == "(2) 2 = No" ~ "Wrong",
+      p_youth_use_tobacco %in% c("(3) 3 = You don't think she / he / he or she has", 
+                                 "(4) 4 = You are confident she / he / he or she has not") & 
+        c_beh_ever_tobacco_user == "(1) 1 = Yes" ~ "Wrong",
+      TRUE ~ NA_character_
+    )
+  )
+
+# Check the result
+table(df$p_know, useNA = "ifany")
+```
+
+# Creating Parent Behavior Variables
+
+```{r}
+#| results: false
+
+# Create independent parent use variables
+df <- df %>%
+  mutate(
+    p_use_b = case_when(
+      p_use_cigarettes == "(1) 1 = Yes" | 
+      p_use_cigar == "(1) 1 = Yes" | 
+      p_use_cigarillo == "(1) 1 = Yes" | 
+      p_use_filtered == "(1) 1 = Yes" | 
+      p_use_pipe == "(1) 1 = Yes" | 
+      p_use_hookah == "(1) 1 = Yes" ~ "Yes",
+      TRUE ~ "No"
+    ),
+    
+    p_use_sm = case_when(
+      p_use_snus == "(1) 1 = Yes" | 
+      p_use_smokeless == "(1) 1 = Yes" | 
+      p_use_pouch == "(1) 1 = Yes" | 
+      p_use_other_oral == "(1) 1 = Yes" ~ "Yes",
+      TRUE ~ "No"
+    ),
+    
+    p_use_ec = case_when(
+      p_use_ecig == "(1) 1 = Yes" ~ "Yes",
+      TRUE ~ "No"
+    )
+  )
+
+table(df$p_use_b)
+table(df$p_use_sm)
+table(df$p_use_ec)
+
+```
+
+# Cleaning Parent Rules
+
+```{r}
+#| results: false
+
+table(df$p_rule_b)
+table(df$p_rule_ec)
+table(df$p_rule_sm)
+
+df <- df %>%
+  mutate(
+    p_rule_b = case_when(
+      p_rule_b == "(1) 1 = It is not allowed anywhere or at any time inside my home" ~ "Never",
+      p_rule_b %in% c("(2) 2 = It is allowed in some places or at some times inside my home", 
+                      "(3) 3 = It is allowed anywhere and at any time inside my home") ~ "Sometimes/Always",
+      TRUE ~ NA_character_
+    ),
+    p_rule_ec = case_when(
+      p_rule_ec == "(1) 1 = It is not allowed anywhere or at any time inside my home" ~ "Never",
+      p_rule_ec %in% c("(2) 2 = It is allowed in some places or at some times inside my home", 
+                       "(3) 3 = It is allowed anywhere and at any time inside my home") ~ "Sometimes/Always",
+      TRUE ~ NA_character_
+    ),
+    p_rule_sm = case_when(
+      p_rule_sm == "(1) 1 = It is not allowed anywhere or at any time inside my home" ~ "Never",
+      p_rule_sm %in% c("(2) 2 = It is allowed in some places or at some times inside my home", 
+                       "(3) 3 = It is allowed anywhere and at any time inside my home") ~ "Sometimes/Always",
+      TRUE ~ NA_character_
+    )
+  )
+
+table(df$p_rule_b)
+table(df$p_rule_ec)
+table(df$p_rule_sm)
+```
+
+# Clean Income Variable
+
+```{r}
+#| results: false
+
+df <- df %>%
+  mutate(
+    demographic_household_income = str_trim(demographic_household_income),
+    combined_income = case_when(
+      demographic_household_income %in% c("(4) 4 = $50,000 to $99,999", "(5) 5 = $100,000 or more") ~ "Above $50,000",
+      demographic_household_income %in% c("(1) 1 = Less than $10,000", "(2) 2 = $10,000 to $24,999", "(3) 3 = $25,000 to $49,999") ~ "Below $50,000",
+      TRUE ~ NA_character_
+    )
+  )
+
+table(df$combined_income)
+```
+
+# Descriptives Table
+
+```{r}
+# Demographics table
+df %>%
+  select(
+    demographic_gender_imputed,
+    demographic_age_range,
+    combined_income,
+    demographic_hispanic_origin_imputed
+  ) %>%
+  mutate(
+    demographic_gender_imputed = case_when(
+      demographic_gender_imputed == "(1) 1 = Male" ~ "Male",
+      demographic_gender_imputed == "(2) 2 = Female" ~ "Female",
+      TRUE ~ NA_character_
+    ),
+    demographic_gender_imputed = factor(demographic_gender_imputed, levels = c("Female", "Male")),
+    
+    demographic_age_range = case_when(
+      demographic_age_range == "(1) 1 = 12 to 14 years old" ~ "12-14 years old",
+      demographic_age_range == "(2) 2 = 15 to 17 years old" ~ "15-17 years old",
+      TRUE ~ NA_character_
+    ),
+    demographic_age_range = factor(demographic_age_range, levels = c("12-14 years old", "15-17 years old")),
+    
+    combined_income = case_when(
+      combined_income == "Below $50,000" ~ "< $50k",
+      combined_income == "Above $50,000" ~ "> $50k",
+      TRUE ~ NA_character_
+    ),
+    combined_income = factor(combined_income, levels = c("< $50k", "> $50k")),
+    
+    demographic_hispanic_origin_imputed = case_when(
+      demographic_hispanic_origin_imputed == "(1) 1 = Hispanic" ~ "Hispanic",
+      demographic_hispanic_origin_imputed == "(2) 2 = Not Hispanic" ~ "Not Hispanic",
+      TRUE ~ NA_character_
+    ),
+    demographic_hispanic_origin_imputed = factor(demographic_hispanic_origin_imputed, levels = c("Not Hispanic", "Hispanic"))
+  ) %>%
+  tbl_summary(
+    label = c(
+      demographic_gender_imputed ~ "Child Gender",
+      demographic_age_range ~ "Age Range",
+      combined_income ~ "Annual Household Income",
+      demographic_hispanic_origin_imputed ~ "Ethnicity"
+    ),
+    type = list(all_categorical() ~ "categorical"),
+    statistic = list(all_categorical() ~ "{n} ({p}%)")
+  ) %>%
+  add_n(statistic = "{N_miss} ({p_miss}%)") %>%
+  modify_table_body(
+    ~.x %>% 
+      mutate(temp = stat_0, stat_0 = n, n = temp) %>%
+      select(-temp) %>%
+      filter(label != "Unknown")
+  ) %>%
+  modify_header(
+    label = "**Characteristic**",
+    stat_0 = "**n Missing (%)**",
+    n = "**n (%)**"
+  ) %>%
+  modify_table_styling(
+    columns = "label",
+    rows = .[["table_body"]]$row_type == "label",
+    text_format = "bold"
+  )
+
+
+```
+
+# Outcomes Table
+
+```{r}
+# Outcomes table
+df %>%
+  select(p_know, c_tried_ecig, p_rule_ec, p_use_ec, c_tried_smokeless, p_rule_sm, p_use_sm, p_use_b) %>%
+  mutate(
+    p_know = case_when(
+      p_know == "Right" ~ "Consistent",
+      p_know == "Wrong" ~ "Inconsistent",
+      TRUE ~ NA_character_
+    ),
+    p_know = factor(p_know, levels = c("Inconsistent", "Consistent")),
+    
+    c_tried_ecig = case_when(
+      c_tried_ecig == "No" ~ "No",
+      c_tried_ecig == "Yes" ~ "Yes",
+      TRUE ~ NA_character_
+    ),
+    c_tried_ecig = factor(c_tried_ecig, levels = c("No", "Yes")),
+    
+    p_rule_ec = case_when(
+      p_rule_ec == "Never" ~ "Strict",
+      p_rule_ec == "Sometimes/Always" ~ "Lenient",
+      TRUE ~ NA_character_
+    ),
+    p_rule_ec = factor(p_rule_ec, levels = c("Strict", "Lenient")),
+    
+    p_use_ec = case_when(
+      p_use_ec == "No" ~ "No",
+      p_use_ec == "Yes" ~ "Yes",
+      TRUE ~ NA_character_
+    ),
+    p_use_ec = factor(p_use_ec, levels = c("No", "Yes")),
+    
+    c_tried_smokeless = case_when(
+      c_tried_smokeless == "No" ~ "No",
+      c_tried_smokeless == "Yes" ~ "Yes",
+      TRUE ~ NA_character_
+    ),
+    c_tried_smokeless = factor(c_tried_smokeless, levels = c("No", "Yes")),
+    
+    p_rule_sm = case_when(
+      p_rule_sm == "Never" ~ "Strict",
+      p_rule_sm == "Sometimes/Always" ~ "Lenient",
+      TRUE ~ NA_character_
+    ),
+    p_rule_sm = factor(p_rule_sm, levels = c("Strict", "Lenient")),
+    
+    p_use_sm = case_when(
+      p_use_sm == "No" ~ "No",
+      p_use_sm == "Yes" ~ "Yes",
+      TRUE ~ NA_character_
+    ),
+    p_use_sm = factor(p_use_sm, levels = c("No", "Yes")),
+    
+    p_use_b = case_when(
+      p_use_b == "No" ~ "No",
+      p_use_b == "Yes" ~ "Yes",
+      TRUE ~ NA_character_
+    ),
+    p_use_b = factor(p_use_b, levels = c("No", "Yes"))
+  ) %>%
+  tbl_summary(
+    label = c(
+      p_know ~ "Parent Knowledge of Child Behavior",
+      c_tried_ecig ~ "Child Tried E-Cigarettes",
+      p_rule_ec ~ "Parent E-Cigarette Rules",
+      p_use_ec ~ "Parent E-Cigarette Use",
+      c_tried_smokeless ~ "Child Tried Smokeless",
+      p_rule_sm ~ "Parent Smokeless Rules",
+      p_use_sm ~ "Parent Smokeless Use",
+      p_use_b ~ "Parent Burned Use"
+    ),
+    type = list(all_categorical() ~ "categorical"),
+    statistic = list(all_categorical() ~ "{n} ({p}%)")
+  ) %>%
+  add_n(statistic = "{N_miss} ({p_miss}%)") %>%
+  modify_table_body(
+    ~.x %>% 
+      mutate(temp = stat_0, stat_0 = n, n = temp) %>%
+      select(-temp) %>%
+      filter(label != "Unknown")
+  ) %>%
+  modify_header(
+    label = "**Characteristic**",
+    stat_0 = "**n Missing (%)**",
+    n = "**n (%)**"
+  ) %>%
+  modify_table_styling(
+    columns = "label",
+    rows = .[["table_body"]]$row_type == "label",
+    text_format = "bold"
+  )
+```
+
+# Final datasets
+
+```{r}
+# Create final datasets for e-cig
+selected_df_ecig <- df %>%
+  select(caseid, weight, p_rule_ec, p_use_ec, p_rule_b, p_know, p_use_b, c_tried_ecig,
+         demographic_gender_imputed, demographic_age_range, combined_income, 
+         demographic_hispanic_origin_imputed) %>%
+  mutate(
+    p_rule_ec = ifelse(p_rule_ec == "Sometimes/Always", 1, 0),
+    p_use_ec = ifelse(p_use_ec == "Yes", 1, 0),
+    p_rule_b = ifelse(p_rule_b == "Sometimes/Always", 1, 0),
+    p_know = ifelse(p_know == "Wrong", 1, 0),
+    p_use_b = ifelse(p_use_b == "Yes", 1, 0),
+    c_try_ec = ifelse(c_tried_ecig == "Yes", 1, 0),
+    dem_gen = ifelse(demographic_gender_imputed == "(1) 1 = Male", 1, 0),
+    dem_age = ifelse(demographic_age_range == "(1) 1 = 12 to 14 years old", 0, 1),
+    dem_inc = ifelse(combined_income == "Above $50,000", 1, 0),
+    dem_hisp = ifelse(demographic_hispanic_origin_imputed == "(1) 1 = Hispanic", 1, 0)
+  )
+
+# Create final dataset for smokeless
+selected_df_smokeless <- df %>%
+  select(caseid, weight, p_rule_sm, p_use_sm, p_rule_b, p_know, p_use_b, c_tried_smokeless,
+         demographic_gender_imputed, demographic_age_range, combined_income, 
+         demographic_hispanic_origin_imputed) %>%
+  mutate(
+    p_rule_sm = ifelse(p_rule_sm == "Sometimes/Always", 1, 0),
+    p_use_sm = ifelse(p_use_sm == "Yes", 1, 0),
+    p_rule_b = ifelse(p_rule_b == "Sometimes/Always", 1, 0),
+    p_know = ifelse(p_know == "Wrong", 1, 0),
+    p_use_b = ifelse(p_use_b == "Yes", 1, 0),
+    c_try_sm = ifelse(c_tried_smokeless == "Yes", 1, 0),
+    dem_gen = ifelse(demographic_gender_imputed == "(1) 1 = Male", 1, 0),
+    dem_age = ifelse(demographic_age_range == "(1) 1 = 12 to 14 years old", 0, 1),
+    dem_inc = ifelse(combined_income == "Above $50,000", 1, 0),
+    dem_hisp = ifelse(demographic_hispanic_origin_imputed == "(1) 1 = Hispanic", 1, 0)
+  )
+selected_df_ecig<- selected_df_ecig %>% 
+  select(-demographic_gender_imputed, -demographic_age_range, -combined_income, -demographic_hispanic_origin_imputed, -c_tried_ecig)
+
+selected_df_smokeless<- selected_df_smokeless %>% 
+  select(-demographic_gender_imputed, -demographic_age_range, -combined_income, -demographic_hispanic_origin_imputed, -c_tried_smokeless)
+
+str(selected_df_ecig)
+str(selected_df_smokeless)
+
+```
+
+# Save datasets
+
+```{r}
+# # Save selected_df_smokeless_2 as a CSV file with row names
+# export(selected_df_smokeless, file = "useme_lca/data/selected_df_smokeless_4.csv", row.names = TRUE)
+# 
+# # Save selected_df_ecig_2 as a CSV file with row names
+# export(selected_df_ecig, file = "useme_lca/data/selected_df_ecig_4.csv", row.names = TRUE)
+```
