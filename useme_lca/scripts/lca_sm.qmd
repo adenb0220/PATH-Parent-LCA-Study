@@ -1,5 +1,6 @@
 ---
 title: "LCA Smokeless Parenting Practice Profiles"
+date: "12.19.2025"
 author: "Chen Su"
 format: 
   html:
@@ -38,9 +39,9 @@ execute:
 library(MplusAutomation); library(glue) # estimation
 library(tidyverse); library(here); # tidyness 
 library(gt); library(reshape2); library(cowplot) # tables & figures
-cbbPalette <- c("#009e73","#d55e00", "#A9A9A9", "#0072b999")
+cbbPalette <- c("#40B0A6",  "#994F00", "#FFC20A","#0C7BDC")
 
-smokeless <- read_csv(here("data", "selected_df_smokeless_3.csv"))
+smokeless <- read_csv(here("data", "selected_df_smokeless_4.csv"))
 smokeless$caseid <- as.character(smokeless$caseid)
 
 names(smokeless)
@@ -281,7 +282,7 @@ allFit_w %>%
       cAIC = consistent Akaike information criterion."),
     locations = cells_title()) %>% 
   tab_options(column_labels.font.weight = "bold") %>% 
-  fmt_number(c(3:6), 
+  fmt_number(c(3:7), 
              decimals = 0) %>% 
   sub_missing(1:6,
               missing_text = "--")
@@ -388,9 +389,9 @@ plot_lca_function(
   item_labels = c("Lenient Rules (Smokeless)","Parental Use (Smokeless)",
                   "Lack of Parental Knowledge","Lenient Rules (Burned)",
                   "Parental Use (Burned)"),
-  class_labels = c( "Lenient Rules","Strict but Use Burned",
-                    "Consistently Strict", "Smokeless Favorable"),
-  class_legend_order = c(3,1,2,4),
+  class_labels = c("Smokeless Favorable", "Lenient Rules",
+                    "Consistently Strict", "Strict but Use Burned"),
+  class_legend_order = c(3,4,2,1),
   plot_title = "Parenting Practice Profiles (Smokeless) (K = 4)"
   )
 

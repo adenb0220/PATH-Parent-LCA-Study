@@ -1,4 +1,4 @@
-TITLE:      E-Cig 4 Class BCH - Child Tried, Age, Income (12.17.2025)
+TITLE:      E-Cig 4 Class BCH - Child Tried, Age, Income (12.19.2025)
     DATA:       FILE IS mplus_ecig.csv;
     VARIABLE:   NAMES ARE p_rule_ec p_use_ec p_know p_rule_b
                           p_use_b c_try_ec dem_gen dem_age dem_inc dem_hisp weight;

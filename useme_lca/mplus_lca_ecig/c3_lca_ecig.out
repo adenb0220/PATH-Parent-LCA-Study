@@ -1,13 +1,14 @@
 Mplus VERSION 8.11 DEMO
 MUTHEN & MUTHEN
-12/16/2025  10:21 PM
+12/19/2025   5:39 PM
 
 INPUT INSTRUCTIONS
 
   TITLE:
   Class 3
   DATA:
-  FILE = "C:/Users/chens/Desktop/useme_lca/mplus_lca_ecig/lca_ecig.dat";
+  FILE = "C:/Users/chens/Desktop/PATHparentLCA/useme_lca/mplus_lca_ecig/
+  lca_ecig.dat";
   VARIABLE:
   NAMES = caseid p_rule_ec p_use_ec p_know p_rule_b p_use_b c_try_ec dem_gen dem_age
        dem_inc dem_hisp weight;
@@ -100,7 +101,7 @@ Random Starts Specifications
 Link                                                         LOGIT
 
 Input data file(s)
-  C:/Users/chens/Desktop/useme_lca/mplus_lca_ecig/lca_ecig.dat
+  C:/Users/chens/Desktop/PATHparentLCA/useme_lca/mplus_lca_ecig/lca_ecig.dat
 Input data format  FREE
 
 
@@ -135,8 +136,8 @@ UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
       Category 1    0.827         6017.000
       Category 2    0.173         1255.000
     P_USE_EC
-      Category 1    0.963         7033.000
-      Category 2    0.037          268.000
+      Category 1    0.934         6817.000
+      Category 2    0.066          484.000
     P_KNOW
       Category 1    0.888         6419.000
       Category 2    0.112          806.000
@@ -152,122 +153,151 @@ RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
 
 Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
 
-          -11371.530  461866           722
-          -11371.530  784664           75
-          -11371.530  284716           713
-          -11371.530  608496           4
-          -11371.530  405371           569
-          -11371.530  765392           382
-          -11371.530  147440           514
-          -11371.530  374219           353
-          -11371.530  971693           470
-          -11371.530  817298           967
-          -11371.530  343926           624
-          -11371.530  435506           988
-          -11371.530  650371           14
-          -11371.530  193569           440
-          -11371.530  736574           414
-          -11371.530  606576           151
-          -11371.530  178475           231
-          -11371.530  354559           73
-          -11371.530  77210            712
-          -11371.530  539751           459
-          -11371.530  782200           84
-          -11371.530  878749           728
-          -11371.530  232559           136
-          -11371.530  489927           520
-          -11371.530  481835           57
-          -11371.530  297518           166
-          -11371.530  987560           985
-          -11371.530  690596           858
-          -11371.530  576220           115
-          -11371.530  869564           869
-          -11371.530  920593           611
-          -11371.530  251641           784
-          -11371.530  190339           102
-          -11371.530  603842           61
-          -11371.530  15715            274
-          -11371.530  247912           537
-          -11371.530  860102           495
-          -11371.530  440395           917
-          -11371.530  967237           48
-          -11371.530  792389           746
-          -11371.530  950604           172
-          -11371.530  888905           444
-          -11371.530  42523            730
-          -11371.530  57226            208
-          -11371.530  376411           473
-          -11371.530  568534           961
-          -11371.530  462228           298
-          -11371.530  626208           698
-          -11371.530  117587           572
-          -11371.530  357866           968
-          -11371.530  185071           370
-          -11371.530  92091            649
-          -11371.530  961454           665
-          -11371.530  534864           307
-          -11371.530  673496           218
-          -11371.530  265218           924
-          -11371.530  455410           999
-          -11371.530  97158            205
-          -11371.530  604861           800
-          -11371.530  761302           744
-          -11371.530  674171           195
-          -11371.530  484687           306
-          -11371.530  485256           371
-          -11371.530  7959             256
-          -11371.530  46437            153
-          -11371.530  941975           816
-          -11371.530  702492           718
-          -11371.530  188498           258
-          -11371.530  802256           477
-          -11371.530  964570           701
-          -11371.530  432148           30
-          -11371.530  307843           664
-          -11371.530  951709           348
-          -11371.530  318177           748
-          -11371.530  327475           518
-          -11371.530  882750           646
-          -11371.530  200041           810
-          -11371.530  782179           835
-          -11371.530  153053           378
-          -11371.530  220454           288
-          -11371.530  574942           558
-          -11371.530  691041           590
-          -11371.530  982520           737
-          -11371.530  535303           923
-          -11371.530  696830           668
-          -11371.530  66276            217
-          -11371.530  231400           738
-          -11371.530  889774           954
-          -11371.530  499150           216
-          -11371.530  473942           574
-          -11371.530  264901           634
-          -11371.530  436892           565
-          -11371.530  440368           797
-          -11371.530  348637           749
-          -11371.530  448829           938
-          -11371.530  575700           100
-          -11371.530  810705           626
-          -11371.530  436460           89
-          -11371.530  422103           62
-          -11371.530  738393           619
-          -11371.530  730868           977
-          -11371.530  383902           673
-          -11371.530  710154           831
-          -11371.530  341041           34
-          -11371.530  679832           302
-          -11371.530  278692           342
-          -11371.530  483369           270
-          -11371.530  17896            592
-          -11371.530  85734            411
-          -11371.530  692169           308
-          -11372.019  712531           631
-          -11372.019  471398           74
-          -11372.019  96941            890
-          -11375.452  399671           13
+          -11917.293  822698           621
+          -11917.293  246794           801
+          -11917.293  570782           193
+          -11917.293  781190           219
+          -11917.293  783110           72
+          -11917.293  153053           378
+          -11917.293  455410           999
+          -11917.293  448829           938
+          -11917.293  341960           685
+          -11917.293  425982           485
+          -11917.293  220454           288
+          -11917.293  622290           880
+          -11917.293  252346           528
+          -11917.293  910224           580
+          -11917.293  411615           171
+          -11917.293  667250           318
+          -11917.293  802256           477
+          -11917.293  575700           100
+          -11917.293  298553           773
+          -11917.293  608496           4
+          -11917.293  642909           251
+          -11917.293  690596           858
+          -11917.293  732596           320
+          -11917.293  376411           473
+          -11917.293  396614           918
+          -11917.293  674171           195
+          -11917.293  782179           835
+          -11917.293  606576           151
+          -11917.293  847088           750
+          -11917.293  512836           289
+          -11917.293  351622           551
+          -11917.293  730868           977
+          -11917.293  961454           665
+          -11917.293  568534           961
+          -11917.293  604861           800
+          -11917.293  66276            217
+          -11917.293  350608           334
+          -11917.293  574942           558
+          -11917.293  626208           698
+          -11917.293  77210            712
+          -11917.293  302046           863
+          -11917.293  476498           179
+          -11917.293  374219           353
+          -11917.293  696773           80
+          -11917.293  441191           361
+          -11917.293  57226            208
+          -11917.293  485483           498
+          -11917.293  659832           754
+          -11917.293  521770           945
+          -11917.293  506886           576
+          -11917.293  539751           459
+          -11917.293  662718           460
+          -11917.293  266008           656
+          -11917.293  278692           342
+          -11917.293  603842           61
+          -11917.293  17896            592
+          -11917.293  484687           306
+          -11917.293  416250           390
+          -11917.293  917702           693
+          -11917.293  692169           308
+          -11917.293  414284           158
+          -11917.293  77571            980
+          -11917.293  284716           713
+          -11917.293  318177           748
+          -11917.293  742688           594
+          -11917.293  967902           52
+          -11917.293  366706           29
+          -11921.902  391368           802
+          -11921.902  850545           357
+          -11921.902  215353           164
+          -11921.902  405079           68
+          -11921.902  399508           415
+          -11921.902  704798           530
+          -11921.902  341041           34
+          -11921.902  313407           132
+          -11921.902  436892           565
+          -11921.902  197223           332
+          -11921.902  251641           784
+          -11921.902  647617           725
+          -11921.902  882750           646
+          -11921.902  319575           499
+          -11921.902  875667           367
+          -11921.902  650371           14
+          -11921.902  758647           951
+          -11921.902  4091             548
+          -11921.902  284109           82
+          -11921.902  425929           508
+          -11921.902  370957           554
+          -11921.902  436460           89
+          -11921.902  937068           982
+          -11921.902  972430           491
+          -11921.902  435506           988
+          -11921.902  405371           569
+          -11921.902  544077           809
+          -11934.264  634782           979
+          -11934.264  848331           137
+          -11934.264  214681           824
+          -11934.264  225995           847
+          -11934.264  574412           679
+          -11934.264  43523            297
+          -11934.264  631413           439
+          -11934.264  506113           895
+          -11934.264  802928           892
+          -11934.264  712531           631
+          -11934.264  314084           81
+          -11934.264  462953           7
+          -11934.264  148918           682
+          -11934.264  887676           22
+          -11934.264  298201           903
+          -11934.264  467339           66
+          -11934.264  801717           364
+          -11934.264  105435           265
+          -11934.264  275475           413
+          -11934.264  775881           778
+          -11934.264  505879           424
+          -11934.264  937225           394
+          -11934.264  86698            893
+          -11934.264  167409           772
+          -11934.264  127215           9
+          -11934.264  717754           180
+          -11934.264  533738           11
+          -11934.264  850840           232
+          -11934.264  403801           762
+          -11934.264  3607             873
+          -11934.264  137305           379
+          -11934.264  502157           799
+          -11934.532  432148           30
+          -11934.532  933578           506
+          -11945.499  154575           539
+          -11945.499  96941            890
+          -11945.499  997222           229
+          -11945.499  202790           198
+          -11945.499  21132            351
+          -11945.499  928287           197
+          -11945.499  155622           507
+          -11945.499  329127           185
+          -11945.499  407108           366
+          -11945.499  420910           928
+          -11945.499  691041           590
+          -11945.499  944186           541
+          -11945.534  669639           699
+          -11945.534  662983           666
+          -11945.534  784664           75
 
-86 perturbed starting value run(s) did not converge or were rejected in the third stage.
+57 perturbed starting value run(s) did not converge or were rejected in the third stage.
 
 
 
@@ -292,15 +322,15 @@ Number of Free Parameters                       17
 
 Loglikelihood
 
-          H0 Value                      -11371.530
-          H0 Scaling Correction Factor      1.0174
+          H0 Value                      -11917.293
+          H0 Scaling Correction Factor      1.0030
             for MLR
 
 Information Criteria
 
-          Akaike (AIC)                   22777.059
-          Bayesian (BIC)                 22894.287
-          Sample-Size Adjusted BIC       22840.265
+          Akaike (AIC)                   23868.587
+          Bayesian (BIC)                 23985.815
+          Sample-Size Adjusted BIC       23931.793
             (n* = (n + 2) / 24)
 
 Chi-Square Test of Model Fit for the Binary and Ordered Categorical
@@ -308,13 +338,13 @@ Chi-Square Test of Model Fit for the Binary and Ordered Categorical
 
           Pearson Chi-Square
 
-          Value                             53.466
+          Value                            127.830
           Degrees of Freedom                    14
           P-Value                           0.0000
 
           Likelihood Ratio Chi-Square
 
-          Value                             51.679
+          Value                            136.321
           Degrees of Freedom                    14
           P-Value                           0.0000
 
@@ -322,15 +352,15 @@ Chi-Square Test for MCAR under the Unrestricted Latent Class Indicator Model
 
           Pearson Chi-Square
 
-          Value                             20.271
+          Value                             22.504
           Degrees of Freedom                    52
-          P-Value                           1.0000
+          P-Value                           0.9999
 
           Likelihood Ratio Chi-Square
 
-          Value                             25.153
+          Value                             26.182
           Degrees of Freedom                    52
-          P-Value                           0.9994
+          P-Value                           0.9989
 
 
 
@@ -340,9 +370,9 @@ BASED ON THE ESTIMATED MODEL
     Latent
    Classes
 
-       1       1245.32584          0.17057
-       2        294.64576          0.04036
-       3       5761.02840          0.78907
+       1        904.09995          0.12383
+       2        624.37606          0.08552
+       3       5772.52399          0.79065
 
 
 FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
@@ -351,9 +381,9 @@ BASED ON ESTIMATED POSTERIOR PROBABILITIES
     Latent
    Classes
 
-       1       1245.32584          0.17057
-       2        294.64576          0.04036
-       3       5761.02840          0.78907
+       1        904.09995          0.12383
+       2        624.37606          0.08552
+       3       5772.52399          0.79065
 
 
 FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
@@ -364,14 +394,14 @@ Class Counts and Proportions
     Latent
    Classes
 
-       1             1299          0.17792
-       2              222          0.03041
-       3             5780          0.79167
+       1              939          0.12861
+       2              454          0.06218
+       3             5908          0.80920
 
 
 CLASSIFICATION QUALITY
 
-     Entropy                         0.885
+     Entropy                         0.906
 
 
 Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
@@ -379,9 +409,9 @@ by Latent Class (Column)
 
            1        2        3
 
-    1   0.868    0.050    0.082
-    2   0.000    0.997    0.003
-    3   0.020    0.001    0.978
+    1   0.961    0.000    0.039
+    2   0.000    0.944    0.056
+    3   0.000    0.033    0.967
 
 
 Classification Probabilities for the Most Likely Latent Class Membership (Column)
@@ -389,9 +419,9 @@ by Latent Class (Row)
 
            1        2        3
 
-    1   0.905    0.000    0.095
-    2   0.222    0.751    0.027
-    3   0.018    0.000    0.981
+    1   0.998    0.000    0.002
+    2   0.000    0.687    0.313
+    3   0.006    0.004    0.989
 
 
 Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
@@ -399,9 +429,9 @@ by Latent Class (Row)
 
               1        2        3
 
-    1      2.254  -11.461    0.000
-    2      2.108    3.327    0.000
-    3     -3.972   -9.003    0.000
+    1      6.260   -7.554    0.000
+    2    -12.655    0.785    0.000
+    3     -5.049   -5.422    0.000
 
 
 MODEL RESULTS
@@ -412,40 +442,40 @@ MODEL RESULTS
 Latent Class 1
 
  Thresholds
-    P_RULE_E$1        -0.822      0.087     -9.484      0.000
-    P_USE_EC$1        15.000      0.000    999.000    999.000
-    P_KNOW$1           1.783      0.090     19.809      0.000
-    P_RULE_B$1        -0.854      0.134     -6.389      0.000
-    P_USE_B$1         -0.075      0.097     -0.772      0.440
+    P_RULE_E$1        -1.074      0.110     -9.750      0.000
+    P_USE_EC$1         1.680      0.100     16.754      0.000
+    P_KNOW$1           1.803      0.098     18.392      0.000
+    P_RULE_B$1       -15.000      0.000    999.000    999.000
+    P_USE_B$1          0.014      0.072      0.199      0.842
 
 Latent Class 2
 
  Thresholds
-    P_RULE_E$1        -3.446      1.033     -3.335      0.001
-    P_USE_EC$1        -1.218      1.766     -0.689      0.491
-    P_KNOW$1           1.551      0.212      7.306      0.000
-    P_RULE_B$1         1.214      0.166      7.311      0.000
-    P_USE_B$1         15.000      0.000    999.000    999.000
+    P_RULE_E$1        -0.794      0.119     -6.646      0.000
+    P_USE_EC$1        -0.192      0.187     -1.027      0.305
+    P_KNOW$1           1.555      0.126     12.337      0.000
+    P_RULE_B$1        15.000      0.000    999.000    999.000
+    P_USE_B$1          0.620      0.110      5.630      0.000
 
 Latent Class 3
 
  Thresholds
-    P_RULE_E$1         3.961      0.907      4.366      0.000
-    P_USE_EC$1         4.947      0.232     21.298      0.000
-    P_KNOW$1           2.183      0.046     47.887      0.000
-    P_RULE_B$1        15.000      0.000    999.000    999.000
-    P_USE_B$1          2.308      0.052     44.048      0.000
+    P_RULE_E$1         3.595      0.220     16.339      0.000
+    P_USE_EC$1        15.000      0.000    999.000    999.000
+    P_KNOW$1           2.196      0.046     47.968      0.000
+    P_RULE_B$1         5.049      0.542      9.310      0.000
+    P_USE_B$1          2.356      0.051     45.936      0.000
 
 Categorical Latent Variables
 
  Means
-    C#1               -1.532      0.048    -31.795      0.000
-    C#2               -2.973      0.423     -7.022      0.000
+    C#1               -1.854      0.044    -41.898      0.000
+    C#2               -2.224      0.095    -23.485      0.000
 
 
 QUALITY OF NUMERICAL RESULTS
 
-     Condition Number for the Information Matrix              0.346E-03
+     Condition Number for the Information Matrix              0.128E-02
        (ratio of smallest to largest eigenvalue)
 
 
@@ -457,56 +487,56 @@ RESULTS IN PROBABILITY SCALE
 Latent Class 1
 
  P_RULE_EC
-    Category 1         0.305      0.018     16.610      0.000
-    Category 2         0.695      0.018     37.788      0.000
+    Category 1         0.255      0.021     12.173      0.000
+    Category 2         0.745      0.021     35.649      0.000
  P_USE_EC
-    Category 1         1.000      0.000      0.000      1.000
-    Category 2         0.000      0.000      0.000      1.000
+    Category 1         0.843      0.013     63.485      0.000
+    Category 2         0.157      0.013     11.829      0.000
  P_KNOW
-    Category 1         0.856      0.011     77.181      0.000
-    Category 2         0.144      0.011     12.981      0.000
+    Category 1         0.858      0.012     72.091      0.000
+    Category 2         0.142      0.012     11.883      0.000
  P_RULE_B
-    Category 1         0.299      0.028     10.667      0.000
-    Category 2         0.701      0.028     25.055      0.000
+    Category 1         0.000      0.000      0.000      1.000
+    Category 2         1.000      0.000      0.000      1.000
  P_USE_B
-    Category 1         0.481      0.024     19.816      0.000
-    Category 2         0.519      0.024     21.361      0.000
+    Category 1         0.504      0.018     28.158      0.000
+    Category 2         0.496      0.018     27.760      0.000
 
 Latent Class 2
 
  P_RULE_EC
-    Category 1         0.031      0.031      0.999      0.318
-    Category 2         0.969      0.031     31.323      0.000
+    Category 1         0.311      0.026     12.158      0.000
+    Category 2         0.689      0.026     26.889      0.000
  P_USE_EC
-    Category 1         0.228      0.311      0.734      0.463
-    Category 2         0.772      0.311      2.479      0.013
+    Category 1         0.452      0.046      9.784      0.000
+    Category 2         0.548      0.046     11.849      0.000
  P_KNOW
-    Category 1         0.825      0.031     26.927      0.000
-    Category 2         0.175      0.031      5.710      0.000
+    Category 1         0.826      0.018     45.503      0.000
+    Category 2         0.174      0.018      9.609      0.000
  P_RULE_B
-    Category 1         0.771      0.029     26.299      0.000
-    Category 2         0.229      0.029      7.813      0.000
- P_USE_B
     Category 1         1.000      0.000      0.000      1.000
     Category 2         0.000      0.000      0.000      1.000
+ P_USE_B
+    Category 1         0.650      0.025     25.956      0.000
+    Category 2         0.350      0.025     13.960      0.000
 
 Latent Class 3
 
  P_RULE_EC
-    Category 1         0.981      0.017     58.957      0.000
-    Category 2         0.019      0.017      1.123      0.261
+    Category 1         0.973      0.006    170.000      0.000
+    Category 2         0.027      0.006      4.671      0.000
  P_USE_EC
-    Category 1         0.993      0.002    610.254      0.000
-    Category 2         0.007      0.002      4.336      0.000
- P_KNOW
-    Category 1         0.899      0.004    216.533      0.000
-    Category 2         0.101      0.004     24.415      0.000
- P_RULE_B
     Category 1         1.000      0.000      0.000      1.000
     Category 2         0.000      0.000      0.000      1.000
+ P_KNOW
+    Category 1         0.900      0.004    218.226      0.000
+    Category 2         0.100      0.004     24.269      0.000
+ P_RULE_B
+    Category 1         0.994      0.003    289.323      0.000
+    Category 2         0.006      0.003      1.856      0.064
  P_USE_B
-    Category 1         0.910      0.004    211.009      0.000
-    Category 2         0.090      0.004     20.979      0.000
+    Category 1         0.913      0.004    225.181      0.000
+    Category 2         0.087      0.004     21.345      0.000
 
 
 LATENT CLASS INDICATOR ODDS RATIOS FOR THE LATENT CLASSES
@@ -517,41 +547,41 @@ LATENT CLASS INDICATOR ODDS RATIOS FOR THE LATENT CLASSES
 Latent Class 1 Compared to Latent Class 2
 
  P_RULE_E
-    Category > 1       0.073      0.076      0.009      0.564
+    Category > 1       1.324      0.214      0.964      1.819
  P_USE_EC
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1       0.154      0.032      0.102      0.232
  P_KNOW
-    Category > 1       0.793      0.183      0.505      1.247
+    Category > 1       0.781      0.125      0.571      1.067
  P_RULE_B
-    Category > 1       7.906      1.693      5.196     12.029
- P_USE_B
     Category > 1   *********      0.000  *********  *********
+ P_USE_B
+    Category > 1       1.833      0.240      1.418      2.370
 
 Latent Class 1 Compared to Latent Class 3
 
  P_RULE_E
-    Category > 1     119.412    103.699     21.769    655.017
+    Category > 1     106.590     26.035     66.039    172.040
  P_USE_EC
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1   *********      0.000  *********  *********
  P_KNOW
-    Category > 1       1.492      0.156      1.216      1.830
+    Category > 1       1.482      0.161      1.198      1.834
  P_RULE_B
     Category > 1   *********      0.000  *********  *********
  P_USE_B
-    Category > 1      10.842      1.267      8.623     13.634
+    Category > 1      10.401      0.908      8.765     12.341
 
 Latent Class 2 Compared to Latent Class 3
 
  P_RULE_E
-    Category > 1    1646.000   2428.849     91.278  29681.910
+    Category > 1      80.501     21.062     48.205    134.434
  P_USE_EC
-    Category > 1     475.541    861.448     13.652  16564.486
- P_KNOW
-    Category > 1       1.881      0.405      1.233      2.869
- P_RULE_B
     Category > 1   *********      0.000  *********  *********
- P_USE_B
+ P_KNOW
+    Category > 1       1.899      0.264      1.446      2.493
+ P_RULE_B
     Category > 1       0.000      0.000      0.000      0.000
+ P_USE_B
+    Category > 1       5.674      0.706      4.445      7.242
 
 
 TECHNICAL 11 OUTPUT
@@ -564,16 +594,16 @@ TECHNICAL 11 OUTPUT
 
      VUONG-LO-MENDELL-RUBIN LIKELIHOOD RATIO TEST FOR 2 (H0) VERSUS 3 CLASSES
 
-          H0 Loglikelihood Value                       -11614.144
-          2 Times the Loglikelihood Difference            485.229
+          H0 Loglikelihood Value                       -12026.347
+          2 Times the Loglikelihood Difference            218.106
           Difference in the Number of Parameters                6
-          Mean                                              5.328
-          Standard Deviation                                4.918
+          Mean                                              3.897
+          Standard Deviation                                4.034
           P-Value                                          0.0000
 
      LO-MENDELL-RUBIN ADJUSTED LRT TEST
 
-          Value                                           476.306
+          Value                                           214.095
           P-Value                                          0.0000
 
 
@@ -595,13 +625,13 @@ TECHNICAL 14 OUTPUT
 
      PARAMETRIC BOOTSTRAPPED LIKELIHOOD RATIO TEST FOR 2 (H0) VERSUS 3 CLASSES
 
-          H0 Loglikelihood Value                       -11614.144
-          2 Times the Loglikelihood Difference            485.229
+          H0 Loglikelihood Value                       -12026.347
+          2 Times the Loglikelihood Difference            218.106
           Difference in the Number of Parameters                6
           Approximate P-Value                              0.0000
           Successful Bootstrap Draws                            5
 
-     WARNING:  OF THE 5 BOOTSTRAP DRAWS, 4 DRAWS HAD BOTH A SMALLER LRT VALUE THAN THE
+     WARNING:  OF THE 5 BOOTSTRAP DRAWS, 5 DRAWS HAD BOTH A SMALLER LRT VALUE THAN THE
      OBSERVED LRT VALUE AND NOT A REPLICATED BEST LOGLIKELIHOOD VALUE FOR THE 3-CLASS MODEL.
      THIS MEANS THAT THE P-VALUE MAY NOT BE TRUSTWORTHY DUE TO LOCAL MAXIMA.
      INCREASE THE NUMBER OF RANDOM STARTS USING THE LRTSTARTS OPTION.
@@ -616,8 +646,8 @@ The following plots are available:
   Scatterplots (sample values)
   Sample proportions and estimated probabilities
 
-     Beginning Time:  22:21:23
-        Ending Time:  22:21:38
+     Beginning Time:  17:39:06
+        Ending Time:  17:39:21
        Elapsed Time:  00:00:15
 
 

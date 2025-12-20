@@ -1,7 +1,8 @@
 TITLE:
 Class 3
 DATA:
-FILE = "C:/Users/chens/Desktop/useme_lca/mplus_lca_sm_w/lca_sm_w.dat"; 
+FILE = "C:/Users/chens/Desktop/PATHparentLCA/useme_lca/mplus_lca_sm_w/
+lca_sm_w.dat"; 
 VARIABLE:
 NAMES = caseid p_rule_sm p_use_sm p_know p_rule_b p_use_b c_try_sm dem_gen dem_age
      dem_inc dem_hisp weight; 

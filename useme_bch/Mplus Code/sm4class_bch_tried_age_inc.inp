@@ -1,4 +1,4 @@
-TITLE:      Smokeless 4 Class BCH - Child Tried, Age, Income (12.17.2025)
+TITLE:      Smokeless 4 Class BCH - Child Tried, Age, Income (12.19.2025)
     DATA:       FILE IS mplus_sm.csv;
     VARIABLE:   NAMES ARE p_rule_sm p_use_sm p_know p_rule_b
                           p_use_b c_try_sm dem_gen dem_age dem_inc dem_hisp weight;

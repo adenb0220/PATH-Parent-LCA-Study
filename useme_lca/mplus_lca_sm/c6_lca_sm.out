@@ -1,13 +1,14 @@
 Mplus VERSION 8.11 DEMO
 MUTHEN & MUTHEN
-12/16/2025   9:37 PM
+12/19/2025   6:01 PM
 
 INPUT INSTRUCTIONS
 
   TITLE:
   Class 6
   DATA:
-  FILE = "C:/Users/chens/Desktop/useme_lca/mplus_lca_sm/lca_sm.dat";
+  FILE = "C:/Users/chens/Desktop/PATHparentLCA/useme_lca/mplus_lca_sm/
+  lca_sm.dat";
   VARIABLE:
   NAMES = caseid p_rule_sm p_use_sm p_know p_rule_b p_use_b c_try_sm dem_gen dem_age
        dem_inc dem_hisp weight;
@@ -100,7 +101,7 @@ Random Starts Specifications
 Link                                                         LOGIT
 
 Input data file(s)
-  C:/Users/chens/Desktop/useme_lca/mplus_lca_sm/lca_sm.dat
+  C:/Users/chens/Desktop/PATHparentLCA/useme_lca/mplus_lca_sm/lca_sm.dat
 Input data format  FREE
 
 
@@ -135,8 +136,8 @@ UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
       Category 1    0.840         6097.000
       Category 2    0.160         1165.000
     P_USE_SM
-      Category 1    0.986         7201.000
-      Category 2    0.014          100.000
+      Category 1    0.977         7130.000
+      Category 2    0.023          171.000
     P_KNOW
       Category 1    0.888         6419.000
       Category 2    0.112          806.000
@@ -152,41 +153,41 @@ RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
 
 Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
 
-          -11383.452  618000           190
-          -11383.460  915642           40
-          -11383.471  491970           563
-          -11383.472  788796           145
-          -11383.479  425149           878
-          -11383.480  869564           869
-          -11383.480  797594           234
-          -11383.480  317868           740
-          -11383.481  606576           151
-          -11383.481  39136            226
-          -11383.485  645664           39
-          -11383.500  608460           244
-          -11383.503  637095           207
-          -11383.506  507154           387
-          -11383.550  422103           62
-          -11383.553  399848           220
-          -11383.575  629720           926
-          -11383.580  608496           4
-          -11383.580  478421           311
-          -11383.603  848890           95
-          -11383.693  576220           115
-          -11383.938  602797           336
-          -11383.938  650371           14
-          -11383.938  85462            51
-          -11383.938  967902           52
-          -11383.938  850112           922
-          -11383.938  576596           99
-          -11383.938  366706           29
-          -11383.938  961454           665
-          -11383.938  299700           932
-          -11383.938  438144           271
-          -11383.939  227563           63
-          -11384.032  749453           33
-          -11384.089  957392           79
-          -11384.209  318230           46
+          -11640.881  576220           115
+          -11640.882  657994           788
+          -11640.911  347222           533
+          -11640.938  438144           271
+          -11640.938  97158            205
+          -11640.965  967902           52
+          -11640.972  961454           665
+          -11640.997  618760           489
+          -11641.006  247912           537
+          -11641.074  617658           660
+          -11641.115  682718           733
+          -11641.255  425149           878
+          -11641.268  34346            330
+          -11641.269  778953           635
+          -11641.279  318230           46
+          -11641.348  723775           97
+          -11641.519  915642           40
+          -11641.685  608460           244
+          -11641.686  797594           234
+          -11641.686  788796           145
+          -11641.688  443442           380
+          -11641.688  830570           369
+          -11641.691  227563           63
+          -11641.697  603842           61
+          -11641.712  370466           41
+          -11641.775  247224           94
+          -11641.861  848890           95
+          -11641.863  576596           99
+          -11641.893  957392           79
+          -11642.088  606576           151
+          -11642.123  366706           29
+          -11642.148  798821           423
+          -11642.618  948615           140
+          -11645.866  749453           33
+          -11649.181  645664           39
 
 165 perturbed starting value run(s) did not converge or were rejected in the third stage.
 
@@ -204,8 +205,8 @@ RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICA
      TRUSTWORTHY FOR SOME PARAMETERS DUE TO A NON-POSITIVE DEFINITE
      FIRST-ORDER DERIVATIVE PRODUCT MATRIX.  THIS MAY BE DUE TO THE STARTING
      VALUES BUT MAY ALSO BE AN INDICATION OF MODEL NONIDENTIFICATION.  THE
-     CONDITION NUMBER IS       0.467D-16.  PROBLEM INVOLVING THE FOLLOWING PARAMETER:
-     Parameter 35, [ C#5 ]
+     CONDITION NUMBER IS       0.245D-12.  PROBLEM INVOLVING THE FOLLOWING PARAMETER:
+     Parameter 26, %C#6%: [ P_RULE_SM$1 ]
 
 
 
@@ -224,15 +225,15 @@ Number of Free Parameters                       35
 
 Loglikelihood
 
-          H0 Value                      -11383.452
-          H0 Scaling Correction Factor      0.9535
+          H0 Value                      -11640.881
+          H0 Scaling Correction Factor      0.9411
             for MLR
 
 Information Criteria
 
-          Akaike (AIC)                   22836.903
-          Bayesian (BIC)                 23078.255
-          Sample-Size Adjusted BIC       22967.033
+          Akaike (AIC)                   23351.762
+          Bayesian (BIC)                 23593.113
+          Sample-Size Adjusted BIC       23481.891
             (n* = (n + 2) / 24)
 
 
@@ -243,12 +244,12 @@ BASED ON THE ESTIMATED MODEL
     Latent
    Classes
 
-       1        698.09649          0.09562
-       2        902.06094          0.12355
-       3         36.85378          0.00505
-       4        563.84962          0.07723
-       5       4740.57719          0.64931
-       6        359.56198          0.04925
+       1        186.97049          0.02561
+       2       4866.56565          0.66656
+       3         56.42418          0.00773
+       4       1166.93894          0.15983
+       5        172.37735          0.02361
+       6        851.72339          0.11666
 
 
 FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
@@ -257,12 +258,12 @@ BASED ON ESTIMATED POSTERIOR PROBABILITIES
     Latent
    Classes
 
-       1        698.09649          0.09562
-       2        902.06094          0.12355
-       3         36.85378          0.00505
-       4        563.84962          0.07723
-       5       4740.57719          0.64931
-       6        359.56198          0.04925
+       1        186.97049          0.02561
+       2       4866.56565          0.66656
+       3         56.42418          0.00773
+       4       1166.93894          0.15983
+       5        172.37735          0.02361
+       6        851.72339          0.11666
 
 
 FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
@@ -273,17 +274,17 @@ Class Counts and Proportions
     Latent
    Classes
 
-       1              577          0.07903
-       2              905          0.12396
-       3               18          0.00247
-       4              579          0.07930
-       5             5076          0.69525
-       6              146          0.02000
+       1              123          0.01685
+       2             5518          0.75579
+       3               54          0.00740
+       4             1004          0.13752
+       5              118          0.01616
+       6              484          0.06629
 
 
 CLASSIFICATION QUALITY
 
-     Entropy                         0.796
+     Entropy                         0.774
 
 
 Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
@@ -291,12 +292,12 @@ by Latent Class (Column)
 
            1        2        3        4        5        6
 
-    1   0.765    0.124    0.041    0.025    0.000    0.045
-    2   0.101    0.718    0.000    0.000    0.000    0.181
-    3   0.278    0.000    0.722    0.000    0.000    0.000
-    4   0.024    0.000    0.000    0.920    0.022    0.034
-    5   0.027    0.036    0.000    0.001    0.931    0.005
-    6   0.065    0.000    0.000    0.076    0.000    0.859
+    1   0.652    0.154    0.020    0.168    0.006    0.000
+    2   0.018    0.878    0.000    0.038    0.017    0.049
+    3   0.045    0.000    0.900    0.000    0.001    0.054
+    4   0.006    0.000    0.000    0.861    0.001    0.132
+    5   0.000    0.009    0.003    0.094    0.597    0.297
+    6   0.000    0.000    0.009    0.128    0.014    0.848
 
 
 Classification Probabilities for the Most Likely Latent Class Membership (Column)
@@ -304,12 +305,12 @@ by Latent Class (Row)
 
            1        2        3        4        5        6
 
-    1   0.632    0.132    0.007    0.020    0.195    0.014
-    2   0.079    0.720    0.000    0.000    0.201    0.000
-    3   0.648    0.000    0.352    0.000    0.000    0.000
-    4   0.026    0.000    0.000    0.945    0.010    0.020
-    5   0.000    0.000    0.000    0.003    0.997    0.000
-    6   0.072    0.455    0.000    0.054    0.070    0.349
+    1   0.429    0.523    0.013    0.035    0.000    0.000
+    2   0.004    0.996    0.000    0.000    0.000    0.000
+    3   0.043    0.009    0.862    0.000    0.006    0.080
+    4   0.018    0.179    0.000    0.741    0.009    0.053
+    5   0.004    0.543    0.000    0.003    0.409    0.040
+    6   0.000    0.318    0.003    0.155    0.041    0.482
 
 
 Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
@@ -317,12 +318,12 @@ by Latent Class (Row)
 
               1        2        3        4        5        6
 
-    1      3.837    2.267   -0.641    0.395    2.662    0.000
-    2     11.279   13.487    0.000    0.000   12.210    0.000
-    3     13.381    0.000   12.773    0.000    0.000    0.000
-    4      0.265   -4.057   -9.882    3.876   -0.693    0.000
-    5      0.000    0.000    0.000    7.896   13.813    0.000
-    6     -1.575    0.265  -12.762   -1.864   -1.603    0.000
+    1     12.969   13.168    9.474   10.459    0.000    0.000
+    2      8.269   13.811    0.000    4.247    5.428    0.000
+    3     -0.635   -2.138    2.371  -11.295   -2.619    0.000
+    4     -1.097    1.216  -10.879    2.636   -1.724    0.000
+    5     -2.215    2.599   -5.369   -2.489    2.314    0.000
+    6    -13.086   -0.415   -4.945   -1.134   -2.460    0.000
 
 
 MODEL RESULTS
@@ -333,70 +334,70 @@ MODEL RESULTS
 Latent Class 1
 
  Thresholds
-    P_RULE_S$1        -0.959      0.469     -2.043      0.041
-    P_USE_SM$1         2.308      0.758      3.046      0.002
-    P_KNOW$1           2.253      1.069      2.109      0.035
-    P_RULE_B$1         1.656      0.641      2.583      0.010
+    P_RULE_S$1       -15.000      0.000    999.000    999.000
+    P_USE_SM$1         0.744      0.908      0.819      0.413
+    P_KNOW$1           1.467      0.372      3.944      0.000
+    P_RULE_B$1         2.931      2.259      1.298      0.194
     P_USE_B$1         15.000      0.000    999.000    999.000
 
 Latent Class 2
 
  Thresholds
-    P_RULE_S$1         0.135      0.846      0.159      0.873
-    P_USE_SM$1        15.000      0.000    999.000    999.000
-    P_KNOW$1          15.000      0.000    999.000    999.000
-    P_RULE_B$1        -0.521      0.834     -0.624      0.532
-    P_USE_B$1         -0.173      0.196     -0.880      0.379
+    P_RULE_S$1         2.956      0.433      6.822      0.000
+    P_USE_SM$1         5.766      0.597      9.660      0.000
+    P_KNOW$1           2.490      0.226     11.028      0.000
+    P_RULE_B$1        15.000      0.000    999.000    999.000
+    P_USE_B$1         15.000      0.000    999.000    999.000
 
 Latent Class 3
 
  Thresholds
-    P_RULE_S$1        -0.327      0.890     -0.367      0.713
+    P_RULE_S$1        -1.258      0.663     -1.897      0.058
     P_USE_SM$1       -15.000      0.000    999.000    999.000
-    P_KNOW$1           0.608      1.249      0.487      0.626
-    P_RULE_B$1        15.000      0.000    999.000    999.000
-    P_USE_B$1         15.000      0.000    999.000    999.000
+    P_KNOW$1           2.433      0.563      4.319      0.000
+    P_RULE_B$1        -0.657      0.343     -1.914      0.056
+    P_USE_B$1         -1.844      1.800     -1.024      0.306
 
 Latent Class 4
 
  Thresholds
-    P_RULE_S$1         3.410      3.018      1.130      0.258
+    P_RULE_S$1        -0.400      0.393     -1.017      0.309
     P_USE_SM$1        15.000      0.000    999.000    999.000
-    P_KNOW$1         -15.000      0.000    999.000    999.000
-    P_RULE_B$1         4.247      1.963      2.164      0.030
-    P_USE_B$1          1.477      0.131     11.277      0.000
+    P_KNOW$1           1.713      0.130     13.130      0.000
+    P_RULE_B$1        -0.616      0.129     -4.782      0.000
+    P_USE_B$1          0.228      0.116      1.958      0.050
 
 Latent Class 5
 
  Thresholds
-    P_RULE_S$1        15.000      0.000    999.000    999.000
-    P_USE_SM$1        15.000      0.000    999.000    999.000
-    P_KNOW$1           5.907      3.059      1.931      0.053
+    P_RULE_S$1         4.773      9.664      0.494      0.621
+    P_USE_SM$1         2.811      0.699      4.024      0.000
+    P_KNOW$1          -2.338      7.006     -0.334      0.739
     P_RULE_B$1        15.000      0.000    999.000    999.000
-    P_USE_B$1          2.470      0.104     23.652      0.000
+    P_USE_B$1          0.311      0.886      0.352      0.725
 
 Latent Class 6
 
  Thresholds
-    P_RULE_S$1        -0.305      0.334     -0.911      0.362
-    P_USE_SM$1        15.000      0.000    999.000    999.000
-    P_KNOW$1           0.240      7.429      0.032      0.974
-    P_RULE_B$1        -0.901      0.796     -1.132      0.258
-    P_USE_B$1         -0.258      0.414     -0.623      0.534
+    P_RULE_S$1        11.406      2.602      4.384      0.000
+    P_USE_SM$1         3.332      0.377      8.838      0.000
+    P_KNOW$1           2.467      1.094      2.255      0.024
+    P_RULE_B$1         1.651      0.574      2.878      0.004
+    P_USE_B$1         -0.490      0.784     -0.625      0.532
 
 Categorical Latent Variables
 
  Means
-    C#1                0.663      4.164      0.159      0.873
-    C#2                0.920      5.853      0.157      0.875
-    C#3               -2.278      3.923     -0.581      0.562
-    C#4                0.450      4.118      0.109      0.913
-    C#5                2.579      4.214      0.612      0.541
+    C#1               -1.516      0.759     -1.998      0.046
+    C#2                1.743      0.545      3.197      0.001
+    C#3               -2.714      0.780     -3.481      0.000
+    C#4                0.315      0.679      0.464      0.643
+    C#5               -1.598      1.381     -1.157      0.247
 
 
 QUALITY OF NUMERICAL RESULTS
 
-     Condition Number for the Information Matrix              0.467E-16
+     Condition Number for the Information Matrix              0.245E-12
        (ratio of smallest to largest eigenvalue)
 
 
@@ -408,17 +409,17 @@ RESULTS IN PROBABILITY SCALE
 Latent Class 1
 
  P_RULE_SM
-    Category 1         0.277      0.094      2.949      0.003
-    Category 2         0.723      0.094      7.690      0.000
+    Category 1         0.000      0.000      0.000      1.000
+    Category 2         1.000      0.000      0.000      1.000
  P_USE_SM
-    Category 1         0.910      0.062     14.589      0.000
-    Category 2         0.090      0.062      1.451      0.147
+    Category 1         0.678      0.198      3.417      0.001
+    Category 2         0.322      0.198      1.624      0.104
  P_KNOW
-    Category 1         0.905      0.092      9.846      0.000
-    Category 2         0.095      0.092      1.034      0.301
+    Category 1         0.813      0.057     14.349      0.000
+    Category 2         0.187      0.057      3.307      0.001
  P_RULE_B
-    Category 1         0.840      0.086      9.732      0.000
-    Category 2         0.160      0.086      1.858      0.063
+    Category 1         0.949      0.109      8.742      0.000
+    Category 2         0.051      0.109      0.466      0.641
  P_USE_B
     Category 1         1.000      0.000      0.000      1.000
     Category 2         0.000      0.000      0.000      1.000
@@ -426,92 +427,92 @@ Latent Class 1
 Latent Class 2
 
  P_RULE_SM
-    Category 1         0.534      0.211      2.535      0.011
-    Category 2         0.466      0.211      2.215      0.027
+    Category 1         0.951      0.020     46.672      0.000
+    Category 2         0.049      0.020      2.428      0.015
  P_USE_SM
-    Category 1         1.000      0.000      0.000      1.000
-    Category 2         0.000      0.000      0.000      1.000
+    Category 1         0.997      0.002    536.345      0.000
+    Category 2         0.003      0.002      1.681      0.093
  P_KNOW
+    Category 1         0.923      0.016     57.836      0.000
+    Category 2         0.077      0.016      4.797      0.000
+ P_RULE_B
     Category 1         1.000      0.000      0.000      1.000
     Category 2         0.000      0.000      0.000      1.000
- P_RULE_B
-    Category 1         0.373      0.195      1.911      0.056
-    Category 2         0.627      0.195      3.217      0.001
  P_USE_B
-    Category 1         0.457      0.049      9.398      0.000
-    Category 2         0.543      0.049     11.168      0.000
+    Category 1         1.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
 
 Latent Class 3
 
  P_RULE_SM
-    Category 1         0.419      0.217      1.933      0.053
-    Category 2         0.581      0.217      2.682      0.007
+    Category 1         0.221      0.114      1.935      0.053
+    Category 2         0.779      0.114      6.813      0.000
  P_USE_SM
     Category 1         0.000      0.000      0.000      1.000
     Category 2         1.000      0.000      0.000      1.000
  P_KNOW
-    Category 1         0.648      0.285      2.271      0.023
-    Category 2         0.352      0.285      1.236      0.216
+    Category 1         0.919      0.042     22.002      0.000
+    Category 2         0.081      0.042      1.931      0.053
  P_RULE_B
-    Category 1         1.000      0.000      0.000      1.000
-    Category 2         0.000      0.000      0.000      1.000
+    Category 1         0.341      0.077      4.425      0.000
+    Category 2         0.659      0.077      8.533      0.000
  P_USE_B
-    Category 1         1.000      0.000      0.000      1.000
-    Category 2         0.000      0.000      0.000      1.000
+    Category 1         0.137      0.212      0.644      0.520
+    Category 2         0.863      0.212      4.067      0.000
 
 Latent Class 4
 
  P_RULE_SM
-    Category 1         0.968      0.093     10.365      0.000
-    Category 2         0.032      0.093      0.342      0.732
+    Category 1         0.401      0.094      4.247      0.000
+    Category 2         0.599      0.094      6.336      0.000
  P_USE_SM
     Category 1         1.000      0.000      0.000      1.000
     Category 2         0.000      0.000      0.000      1.000
  P_KNOW
-    Category 1         0.000      0.000      0.000      1.000
-    Category 2         1.000      0.000      0.000      1.000
+    Category 1         0.847      0.017     50.171      0.000
+    Category 2         0.153      0.017      9.048      0.000
  P_RULE_B
-    Category 1         0.986      0.027     36.131      0.000
-    Category 2         0.014      0.027      0.517      0.605
+    Category 1         0.351      0.029     11.955      0.000
+    Category 2         0.649      0.029     22.135      0.000
  P_USE_B
-    Category 1         0.814      0.020     41.077      0.000
-    Category 2         0.186      0.020      9.375      0.000
+    Category 1         0.557      0.029     19.387      0.000
+    Category 2         0.443      0.029     15.437      0.000
 
 Latent Class 5
 
  P_RULE_SM
-    Category 1         1.000      0.000      0.000      1.000
-    Category 2         0.000      0.000      0.000      1.000
+    Category 1         0.992      0.080     12.343      0.000
+    Category 2         0.008      0.080      0.104      0.917
  P_USE_SM
-    Category 1         1.000      0.000      0.000      1.000
-    Category 2         0.000      0.000      0.000      1.000
+    Category 1         0.943      0.037     25.229      0.000
+    Category 2         0.057      0.037      1.518      0.129
  P_KNOW
-    Category 1         0.997      0.008    120.451      0.000
-    Category 2         0.003      0.008      0.328      0.743
+    Category 1         0.088      0.562      0.157      0.876
+    Category 2         0.912      0.562      1.622      0.105
  P_RULE_B
     Category 1         1.000      0.000      0.000      1.000
     Category 2         0.000      0.000      0.000      1.000
  P_USE_B
-    Category 1         0.922      0.008    122.816      0.000
-    Category 2         0.078      0.008     10.383      0.000
+    Category 1         0.577      0.216      2.671      0.008
+    Category 2         0.423      0.216      1.956      0.050
 
 Latent Class 6
 
  P_RULE_SM
-    Category 1         0.424      0.082      5.198      0.000
-    Category 2         0.576      0.082      7.049      0.000
+    Category 1         1.000      0.000  34523.082      0.000
+    Category 2         0.000      0.000      0.384      0.701
  P_USE_SM
-    Category 1         1.000      0.000      0.000      1.000
-    Category 2         0.000      0.000      0.000      1.000
+    Category 1         0.966      0.013     76.928      0.000
+    Category 2         0.034      0.013      2.747      0.006
  P_KNOW
-    Category 1         0.560      1.831      0.306      0.760
-    Category 2         0.440      1.831      0.240      0.810
+    Category 1         0.922      0.079     11.692      0.000
+    Category 2         0.078      0.079      0.992      0.321
  P_RULE_B
-    Category 1         0.289      0.163      1.767      0.077
-    Category 2         0.711      0.163      4.351      0.000
+    Category 1         0.839      0.077     10.828      0.000
+    Category 2         0.161      0.077      2.078      0.038
  P_USE_B
-    Category 1         0.436      0.102      4.280      0.000
-    Category 2         0.564      0.102      5.539      0.000
+    Category 1         0.380      0.185      2.057      0.040
+    Category 2         0.620      0.185      3.357      0.001
 
 
 LATENT CLASS INDICATOR ODDS RATIOS FOR THE LATENT CLASSES
@@ -522,39 +523,39 @@ LATENT CLASS INDICATOR ODDS RATIOS FOR THE LATENT CLASSES
 Latent Class 1 Compared to Latent Class 2
 
  P_RULE_S
-    Category > 1       2.984      2.462      0.593     15.031
- P_USE_SM
     Category > 1   *********      0.000  *********  *********
- P_KNOW
-    Category > 1   *********      0.000  *********  *********
- P_RULE_B
-    Category > 1       0.113      0.144      0.009      1.365
- P_USE_B
-    Category > 1       0.000      0.000      0.000      0.000
-
-Latent Class 1 Compared to Latent Class 3
-
- P_RULE_S
-    Category > 1       1.880      2.312      0.169     20.923
  P_USE_SM
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1     151.637    157.068     19.911   1154.807
  P_KNOW
-    Category > 1       0.193      0.360      0.005      7.454
+    Category > 1       2.779      1.203      1.190      6.490
  P_RULE_B
     Category > 1   *********      0.000  *********  *********
  P_USE_B
     Category > 1       1.000      0.000      1.000      1.000
 
+Latent Class 1 Compared to Latent Class 3
+
+ P_RULE_S
+    Category > 1   *********      0.000  *********  *********
+ P_USE_SM
+    Category > 1       0.000      0.000      0.000      0.000
+ P_KNOW
+    Category > 1       2.626      1.795      0.688     10.027
+ P_RULE_B
+    Category > 1       0.028      0.063      0.000      2.418
+ P_USE_B
+    Category > 1       0.000      0.000      0.000      0.000
+
 Latent Class 1 Compared to Latent Class 4
 
  P_RULE_S
-    Category > 1      78.964    250.550      0.157  39656.109
+    Category > 1   *********      0.000  *********  *********
  P_USE_SM
     Category > 1   *********      0.000  *********  *********
  P_KNOW
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1       1.278      0.513      0.582      2.806
  P_RULE_B
-    Category > 1      13.347     27.104      0.249    714.458
+    Category > 1       0.029      0.065      0.000      2.447
  P_USE_B
     Category > 1       0.000      0.000      0.000      0.000
 
@@ -563,9 +564,9 @@ Latent Class 1 Compared to Latent Class 5
  P_RULE_S
     Category > 1   *********      0.000  *********  *********
  P_USE_SM
-    Category > 1   *********      0.000  *********  *********
+    Category > 1       7.900      8.035      1.076     58.005
  P_KNOW
-    Category > 1      38.593     84.285      0.534   2789.471
+    Category > 1       0.022      0.157      0.000  22487.326
  P_RULE_B
     Category > 1   *********      0.000  *********  *********
  P_USE_B
@@ -574,145 +575,145 @@ Latent Class 1 Compared to Latent Class 5
 Latent Class 1 Compared to Latent Class 6
 
  P_RULE_S
-    Category > 1       1.923      1.074      0.644      5.744
- P_USE_SM
     Category > 1   *********      0.000  *********  *********
+ P_USE_SM
+    Category > 1      13.309     13.291      1.879     94.241
  P_KNOW
-    Category > 1       0.134      0.930      0.000  *********
+    Category > 1       2.717      3.204      0.269     27.408
  P_RULE_B
-    Category > 1       0.078      0.073      0.012      0.493
+    Category > 1       0.278      0.581      0.005     16.663
  P_USE_B
     Category > 1       0.000      0.000      0.000      0.000
 
 Latent Class 2 Compared to Latent Class 3
 
  P_RULE_S
-    Category > 1       0.630      0.948      0.033     12.040
+    Category > 1       0.015      0.012      0.003      0.068
  P_USE_SM
     Category > 1       0.000      0.000      0.000      0.000
  P_KNOW
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1       0.945      0.588      0.279      3.197
  P_RULE_B
-    Category > 1   *********      0.000  *********  *********
+    Category > 1       0.000      0.000      0.000      0.000
  P_USE_B
-    Category > 1   *********      0.000  *********  *********
+    Category > 1       0.000      0.000      0.000      0.000
 
 Latent Class 2 Compared to Latent Class 4
 
  P_RULE_S
-    Category > 1      26.458     91.435      0.030  23131.709
+    Category > 1       0.035      0.019      0.012      0.103
  P_USE_SM
-    Category > 1       1.000      0.000      1.000      1.000
+    Category > 1   10244.460      0.000  10244.460  10244.460
  P_KNOW
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1       0.460      0.122      0.274      0.772
  P_RULE_B
-    Category > 1     117.729    199.750      4.233   3274.401
+    Category > 1       0.000      0.000      0.000      0.000
  P_USE_B
-    Category > 1       5.207      1.244      3.260      8.315
+    Category > 1       0.000      0.000      0.000      0.000
 
 Latent Class 2 Compared to Latent Class 5
 
  P_RULE_S
-    Category > 1   *********      0.000  *********  *********
+    Category > 1       6.153     58.524      0.000  *********
  P_USE_SM
-    Category > 1       1.000      0.000      1.000      1.000
+    Category > 1       0.052      0.047      0.009      0.308
  P_KNOW
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1       0.008      0.056      0.000   6826.689
  P_RULE_B
-    Category > 1   *********      0.000  *********  *********
+    Category > 1       1.000      0.000      1.000      1.000
  P_USE_B
-    Category > 1      14.055      3.460      8.675     22.772
+    Category > 1       0.000      0.000      0.000      0.000
 
 Latent Class 2 Compared to Latent Class 6
 
  P_RULE_S
-    Category > 1       0.644      0.514      0.135      3.079
+    Category > 1    4671.716  12322.868     26.556  *********
  P_USE_SM
-    Category > 1       1.000      0.000      1.000      1.000
+    Category > 1       0.088      0.071      0.018      0.429
  P_KNOW
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1       0.978      1.054      0.118      8.087
  P_RULE_B
-    Category > 1       0.684      0.952      0.045     10.464
+    Category > 1       0.000      0.000      0.000      0.000
  P_USE_B
-    Category > 1       0.918      0.379      0.409      2.063
+    Category > 1       0.000      0.000      0.000      0.000
 
 Latent Class 3 Compared to Latent Class 4
 
  P_RULE_S
-    Category > 1      41.991    122.124      0.140  12553.571
+    Category > 1       2.359      1.341      0.774      7.188
  P_USE_SM
     Category > 1   *********      0.000  *********  *********
  P_KNOW
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1       0.487      0.276      0.160      1.480
  P_RULE_B
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1       1.041      0.379      0.511      2.125
  P_USE_B
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1       7.938     13.886      0.257    244.778
 
 Latent Class 3 Compared to Latent Class 5
 
  P_RULE_S
-    Category > 1   *********      0.000  *********  *********
+    Category > 1     416.365   4030.919      0.000  *********
  P_USE_SM
     Category > 1   *********      0.000  *********  *********
  P_KNOW
-    Category > 1     199.983    688.805      0.234  *********
+    Category > 1       0.008      0.060      0.000   8537.709
  P_RULE_B
-    Category > 1       1.000      0.000      1.000      1.000
+    Category > 1   *********      0.000  *********  *********
  P_USE_B
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1       8.629     17.656      0.156    476.032
 
 Latent Class 3 Compared to Latent Class 6
 
  P_RULE_S
-    Category > 1       1.023      0.983      0.155      6.730
+    Category > 1   *********  *********   1772.092  *********
  P_USE_SM
     Category > 1   *********      0.000  *********  *********
  P_KNOW
-    Category > 1       0.692      5.086      0.000  *********
+    Category > 1       1.035      1.348      0.080     13.301
  P_RULE_B
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1      10.049      6.687      2.728     37.026
  P_USE_B
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1       3.873      9.369      0.034    443.840
 
 Latent Class 4 Compared to Latent Class 5
 
  P_RULE_S
-    Category > 1   *********      0.000  *********  *********
+    Category > 1     176.470   1704.893      0.000  *********
  P_USE_SM
-    Category > 1       1.000      0.000      1.000      1.000
+    Category > 1       0.000      0.000      0.000      0.000
  P_KNOW
-    Category > 1   *********      0.000  *********  *********
+    Category > 1       0.017      0.122      0.000  15441.302
  P_RULE_B
-    Category > 1   46747.441      0.000  46747.441  46747.441
+    Category > 1   *********      0.000  *********  *********
  P_USE_B
-    Category > 1       2.699      0.424      1.984      3.673
+    Category > 1       1.087      0.975      0.188      6.302
 
 Latent Class 4 Compared to Latent Class 6
 
  P_RULE_S
-    Category > 1       0.024      0.075      0.000      9.849
+    Category > 1   *********  *********    839.390  *********
  P_USE_SM
-    Category > 1       1.000      0.000      1.000      1.000
+    Category > 1       0.000      0.000      0.000      0.000
  P_KNOW
-    Category > 1   *********      0.000  *********  *********
+    Category > 1       2.126      2.431      0.226     19.997
  P_RULE_B
-    Category > 1       0.006      0.013      0.000      0.454
+    Category > 1       9.649      5.881      2.922     31.862
  P_USE_B
-    Category > 1       0.176      0.072      0.080      0.391
+    Category > 1       0.488      0.412      0.093      2.556
 
 Latent Class 5 Compared to Latent Class 6
 
  P_RULE_S
-    Category > 1       0.000      0.000      0.000      0.000
+    Category > 1     759.275   7326.678      0.000  *********
  P_USE_SM
-    Category > 1       1.000      0.000      1.000      1.000
+    Category > 1       1.685      1.420      0.323      8.795
  P_KNOW
-    Category > 1       0.003      0.020      0.000    239.145
+    Category > 1     122.154    862.547      0.000  *********
  P_RULE_B
     Category > 1       0.000      0.000      0.000      0.000
  P_USE_B
-    Category > 1       0.065      0.026      0.030      0.142
+    Category > 1       0.449      0.512      0.048      4.196
 
 
 TECHNICAL 11 OUTPUT
@@ -725,17 +726,17 @@ TECHNICAL 11 OUTPUT
 
      VUONG-LO-MENDELL-RUBIN LIKELIHOOD RATIO TEST FOR 5 (H0) VERSUS 6 CLASSES
 
-          H0 Loglikelihood Value                       -11384.080
-          2 Times the Loglikelihood Difference              1.256
+          H0 Loglikelihood Value                       -11642.155
+          2 Times the Loglikelihood Difference              2.548
           Difference in the Number of Parameters                6
-          Mean                                              1.672
-          Standard Deviation                                2.936
-          P-Value                                          0.5182
+          Mean                                              2.537
+          Standard Deviation                                3.005
+          P-Value                                          0.4364
 
      LO-MENDELL-RUBIN ADJUSTED LRT TEST
 
-          Value                                             1.233
-          P-Value                                          0.5227
+          Value                                             2.501
+          P-Value                                          0.4434
 
 
 TECHNICAL 14 OUTPUT
@@ -756,8 +757,8 @@ TECHNICAL 14 OUTPUT
 
      PARAMETRIC BOOTSTRAPPED LIKELIHOOD RATIO TEST FOR 5 (H0) VERSUS 6 CLASSES
 
-          H0 Loglikelihood Value                       -11384.080
-          2 Times the Loglikelihood Difference              1.256
+          H0 Loglikelihood Value                       -11642.155
+          2 Times the Loglikelihood Difference              2.548
           Difference in the Number of Parameters                6
           Approximate P-Value                              1.0000
           Successful Bootstrap Draws                            2
@@ -771,9 +772,9 @@ The following plots are available:
   Scatterplots (sample values)
   Sample proportions and estimated probabilities
 
-     Beginning Time:  21:37:53
-        Ending Time:  21:38:08
-       Elapsed Time:  00:00:15
+     Beginning Time:  18:01:02
+        Ending Time:  18:01:19
+       Elapsed Time:  00:00:17
 
 
 Mplus VERSION 8.11 DEMO has the following limitations:

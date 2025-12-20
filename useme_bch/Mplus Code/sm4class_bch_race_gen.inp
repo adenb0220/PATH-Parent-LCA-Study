@@ -1,0 +1,19 @@
+TITLE:      Smokeless 4 Class BCH - Ethnicity, Gender (12.19.2025)
+    DATA:       FILE IS mplus_sm.csv;
+    VARIABLE:   NAMES ARE p_rule_sm p_use_sm p_know p_rule_b
+                          p_use_b c_try_sm dem_gen dem_age dem_inc dem_hisp weight;
+                USEV ARE p_rule_sm p_use_sm p_know p_rule_b p_use_b;
+                CATEGORICAL = p_rule_sm p_use_sm p_know p_rule_b p_use_b;
+                CLASSES = c(4);
+                Missing are ALL (999);
+		Auxiliary = dem_hisp (bch) dem_gen (bch);
+                !BCH is preferred method for continuous distal outcomes
+                !DCAT  preferred method for categorical outcomes
+                !(Asparouhov & Muthen 2014)
+    ANALYSIS:
+                TYPE = MIXTURE;
+                starts=1000 200;
+    OUTPUT:     tech11 tech14;
+    PLOT:	    type = plot3;
+     		     series = p_rule_sm p_use_sm p_know p_rule_b p_use_b(*);
+

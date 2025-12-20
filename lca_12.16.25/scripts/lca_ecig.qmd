@@ -1,0 +1,445 @@
+---
+title: "LCA E-Cig Parenting Practice Profiles"
+author: "Chen Su"
+format: 
+  html:
+    highlight-style: espresso
+    code-fold: true
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  message: false
+---
+
+## Latent Class Analyses (E-Cigarette) Indicator Variables
+
+`p_rule_ec`  = Parents Have Lenient Rules for E-Cigarettes 
+                (Lenient Rule = 1, Strict Rule = 0)
+
+`p_use_ec` = Parents Uses E-Cigarettes themselves
+                (Use = 1, No Use = 0)
+
+`p_know`  = Parents Being Incorrect on Whether their Child Uses Any 
+              Nicotine Product (Lack of Knowledge = 1, Accurate Knowledge = 0)
+
+`p_rule_b` = Parents Have Lenient Rules for Burned Nicotine Products 
+                (Lenient Rule = 1, Strict Rule = 0)
+
+`p_use_b` = Parents Uses Burned Nicotine Products themselves 
+               (Use = 1, No Use = 0)
+
+
+
+```{r}
+#| label: load-packages-data
+#| include: false
+
+library(MplusAutomation); library(glue) # estimation
+library(tidyverse); library(here); # tidyness 
+library(gt); library(reshape2); library(cowplot) # tables & figures
+cbbPalette <- c("#009e73","#d55e00", "#A9A9A9", "#0072b999")
+
+ecig <- read_csv(here("data", "selected_df_ecig_3.csv"))
+ecig$caseid <- as.character(ecig$caseid)
+
+names(ecig)
+
+```
+
+
+
+### 1. Enumeration with MplusAutomation
+
+#### *Only run Enumeration code chunks the very first time*
+
+```{r}
+#| label: Enumeration-1000
+#| eval: false
+
+## 1-7 classes with start value = 1000 WITHOUT Weights
+
+lca_k1_7  <- lapply(1:7, function(k) {
+  
+  lca_enum  <- mplusObject(
+      
+    TITLE = glue("Class {k}"), 
+  
+    VARIABLE = glue(
+    "categorical = p_rule_ec p_use_ec p_know p_rule_b p_use_b; 
+     usevar = p_rule_ec p_use_ec p_know p_rule_b p_use_b;
+     classes = c({k}); "),
+  
+  ANALYSIS = 
+   "estimator = mlr; 
+    type = mixture;
+    starts = 1000 200; 
+    processors = 10;",
+  
+  OUTPUT = "tech11 tech14;",
+  
+  PLOT = 
+    "type = plot3; 
+     series = p_rule_ec p_use_ec p_know p_rule_b p_use_b(*);",
+  
+  usevariables = colnames(ecig),
+  rdata = ecig)
+
+lca_enum_fit <- mplusModeler(lca_enum, 
+                            dataout=glue(here("mplus_lca_ecig", "lca_ecig.dat")),
+                            modelout=glue(here("mplus_lca_ecig", "c{k}_lca_ecig.inp")) ,
+                            check=TRUE, run = TRUE, hashfilename = FALSE)
+})
+
+```
+
+
+#### *Only run Enumeration code chunks the very first time*
+
+```{r}
+#| label: Enumeration-1000-weighted
+#| eval: false
+
+## 1-7 classes with start value = 1000 WITH Weights
+
+lca_k1_7  <- lapply(1:7, function(k) {
+  
+  lca_enum  <- mplusObject(
+      
+    TITLE = glue("Class {k}"), 
+  
+    VARIABLE = glue(
+    "categorical = p_rule_ec p_use_ec p_know p_rule_b p_use_b; 
+     usevar = p_rule_ec p_use_ec p_know p_rule_b p_use_b;
+     weight = weight;
+     classes = c({k}); "),
+  
+  ANALYSIS = 
+   "estimator = mlr; 
+    type = mixture;
+    starts = 1000 200; 
+    processors = 10;",
+  
+  OUTPUT = "tech11 tech14;",
+  
+  PLOT = 
+    "type = plot3; 
+     series = p_rule_ec p_use_ec p_know p_rule_b p_use_b(*);",
+  
+  usevariables = colnames(ecig),
+  rdata = ecig)
+
+lca_enum_fit <- mplusModeler(lca_enum, 
+                            dataout=glue(here("mplus_lca_ecig_w", "lca_ecig_w.dat")),
+                            modelout=glue(here("mplus_lca_ecig_w", "c{k}_lca_ecig_w.inp")) ,
+                            check=TRUE, run = TRUE, hashfilename = FALSE)
+})
+
+```
+
+
+
+### 2a. Model Fit Statistics & Comparison (Unweighted)
+
+```{r}
+#| label: read-model-fit-stats
+
+## unweighted
+
+output_lca_ecig <- readModels(here("mplus_lca_ecig"), quiet = TRUE)
+
+enum_summary <- LatexSummaryTable(output_lca_ecig,                                      
+                keepCols=c("Title", "Parameters", "LL", "BIC", "aBIC", "AIC",
+                           "BLRT_PValue", "Entropy","Observations"), 
+                sortBy = "Title")
+
+```
+
+
+```{r}
+#| label: calculate-fit-indices
+
+## unweighted
+
+allFit <- enum_summary %>% 
+  mutate(aBIC = -2*LL+Parameters*log((Observations+2)/24)) %>% 
+  mutate(cAIC = -2*LL+Parameters*(log(Observations)+1)) %>% 
+  dplyr::select(1:6,10,8,7) %>% 
+  arrange(Parameters)
+
+```
+
+
+```{r}
+#| label: generate-fit-table
+
+## unweighted
+
+allFit %>% 
+  mutate(Title = str_remove(Title, " LCA Enumeration ")) %>% 
+  gt() %>%
+  tab_header(
+    title = md("**Model Fit Summary Table (E-Cig)**")) %>% 
+  cols_label(
+    Title = "Classes",
+    Parameters = md("Par"),
+    LL = md("*LL*"),
+    BLRT_PValue = "BLRT") %>%
+  tab_footnote(
+    footnote = md(
+    "*Note.* Par = parameters; *LL* = log likelihood;
+      BIC = bayesian information criterion;
+      aBIC = sample size adjusted BIC; AIC = Akaike information criterion;
+      cAIC = consistent Akaike information criterion;
+      BLRT = bootstrapped likelihood ratio test p-value."), 
+    locations = cells_title()) %>% 
+  tab_options(column_labels.font.weight = "bold") %>% 
+  fmt_number(c(3:7), 
+             decimals = 0) %>% 
+  sub_missing(1:7,
+              missing_text = "--") %>% 
+  fmt(c(9),
+    fns = function(x) 
+    ifelse(x<0.001, "<.001",
+           scales::number(x, accuracy = 0.01))) 
+
+```
+
+
+```{r, fig.width = 7, fig.height = 5}
+#| label: compare-conditional-prob-plots
+
+## unweighted
+
+model_results <- data.frame()
+for (i in 1:length(output_lca_ecig)) {
+  temp <- data.frame(unclass(output_lca_ecig[[i]]$parameters$probability.scale)) %>% 
+    mutate(model = paste0(i, "-Class Model")) 
+  model_results <- rbind(model_results, temp) }
+
+pp_plots <- model_results %>% filter(category == 2) %>%
+  dplyr::select(est, model, LatentClass, param) %>%
+  mutate(param = as.factor(str_to_lower(param))) 
+
+pp_plots$param <- fct_inorder(pp_plots$param)
+
+ggplot(pp_plots,
+       aes(x = param, y = est, color = LatentClass, shape = LatentClass, group = LatentClass)) + 
+  geom_point() + geom_line() + facet_wrap(~ model, ncol = 2) + labs(x= "", y = "Probability", title = "E-Cig Conditional Probability Plot (Unweighted)") +
+  theme_minimal() + theme(legend.position = "none", axis.text.x = element_text(size = 6))
+
+```
+
+
+
+### 2b. Model Fit Statistics & Comparison (Weighted)
+
+```{r}
+#| label: read-model-fit-stats-weighted
+
+## weighted (NO BLRT)
+
+output_lca_ecig_w <- readModels(here("mplus_lca_ecig_w"), quiet = TRUE)
+
+enum_summary_w <- LatexSummaryTable(output_lca_ecig_w,                                          
+                keepCols=c("Title", "Parameters", "LL", "BIC", "aBIC",             "AIC","Observations", "Entropy"), 
+                sortBy = "Title")
+
+```
+
+
+```{r}
+#| label: calculate-fit-indices_weighted
+
+allFit_w <- enum_summary_w %>% 
+  mutate(aBIC = -2*LL+Parameters*log((Observations+2)/24)) %>% 
+  mutate(cAIC = -2*LL+Parameters*(log(Observations)+1)) %>% 
+  dplyr::select(1:5,6,9,8) %>% 
+  arrange(Parameters)
+
+```
+
+
+```{r}
+#| label: generate-fit-table_weighted
+
+allFit_w %>% 
+  mutate(Title = str_remove(Title, " LCA Enumeration ")) %>% 
+  gt() %>%
+  tab_header(
+    title = md("**Model Fit Summary Table (E-Cig, Weighted)**")) %>% 
+  cols_label(
+    Title = "Classes",
+    Parameters = md("Par"),
+    LL = md("*LL*")) %>%
+  tab_footnote(
+    footnote = md(
+    "*Note.* Par = parameters; *LL* = log likelihood;
+      BIC = bayesian information criterion;
+      aBIC = sample size adjusted BIC; 
+      AIC = Akaike information criterion; 
+      cAIC = consistent Akaike information criterion."),
+    locations = cells_title()) %>% 
+  tab_options(column_labels.font.weight = "bold") %>% 
+  fmt_number(c(3:6), 
+             decimals = 0) %>% 
+  sub_missing(1:6,
+              missing_text = "--")
+
+```
+
+
+
+```{r, fig.width = 7, fig.height = 5}
+#| label: compare-conditional-prob-plots_weighted
+
+model_results_w <- data.frame()
+for (i in 1:length(output_lca_ecig_w)) {
+  temp <- data.frame(unclass(output_lca_ecig_w[[i]]$parameters$probability.scale)) %>% 
+    mutate(model = paste0(i, "-Class Model")) 
+  model_results_w <- rbind(model_results_w, temp) }
+
+pp_plots_w <- model_results_w %>% filter(category == 2) %>%
+  dplyr::select(est, model, LatentClass, param) %>%
+  mutate(param = as.factor(str_to_lower(param))) 
+
+pp_plots_w$param <- fct_inorder(pp_plots_w$param)
+
+ggplot(pp_plots_w,
+       aes(x = param, y = est, color = LatentClass, shape = LatentClass, group = LatentClass)) + 
+  geom_point() + geom_line() + facet_wrap(~ model, ncol = 2) + labs(x= "", y = "Probability", , title = "E-Cig Conditional Probability Plot (Weighted)") +
+  theme_minimal() + theme(legend.position = "none", axis.text.x = element_text(size = 6))
+
+```
+
+
+
+### 3. Plot Final Model - Conditional Item Probability Plot 
+
+#### **This syntax creates a function called `plot_lca_function` that requires 7 arguments (inputs):**
+
+- `model_name`: name of Mplus model object (e.g., `model_step1`)
+- `item_num`: the number of items in LCA measurement model (e.g., `5`)
+- `class_num`: the number of classes (*k*) in LCA model (e.g., `3`)
+- `item_labels`: the item labels for x-axis (e.g., `c("Enjoy","Useful","Logical","Job","Adult")`)
+- `class_labels`: the class label names (e.g., `c("Adaptive Coping","Externalizing Behavior","No Coping")`)
+- `class_legend_order` = change the order that class names are listed in the plot legend (e.g., `c(2,1,3)`)
+- `plot_title`: include the title of the plot here (e.g., `"LCA Posterior Probability Plot"`)
+
+
+```{r}
+#| label: read-plot-data-c4
+
+model_c4 <- readModels(here("mplus_lca_ecig", "c4_lca_ecig.out"), quiet = TRUE)
+                           
+```
+
+
+```{r}
+#| label: load-plot-lca-function
+
+plot_lca_function <- function(model_name,item_num,class_num,item_labels,
+                              class_labels,class_legend_order,plot_title){
+
+mplus_model <- as.data.frame(model_name$gh5$means_and_variances_data$estimated_probs$values)
+plot_data <- mplus_model[seq(2, 2*item_num, 2),]
+
+c_size <- as.data.frame(model_name$class_counts$modelEstimated$proportion)
+colnames(c_size) <- paste0("cs")
+c_size <- c_size %>% mutate(cs = round(cs*100, 2))
+colnames(plot_data) <- paste0(class_labels, glue(" ({c_size[1:class_num,]}%)"))
+plot_data <- plot_data %>% relocate(class_legend_order)
+
+plot_data <- cbind(Var = paste0("U", 1:item_num), plot_data)
+plot_data$Var <- factor(plot_data$Var,
+               labels = item_labels)
+plot_data$Var <- fct_inorder(plot_data$Var)
+
+pd_long_data <- melt(plot_data, id.vars = "Var") 
+
+p <- pd_long_data %>%
+  ggplot(aes(x = as.integer(Var), y = value,
+  shape = variable, colour = variable, lty = variable)) +
+  geom_point(size = 4) + geom_line(linewidth = 1.2) + 
+  scale_x_continuous("", breaks = 1:item_num,
+                     labels = function(x) str_wrap(plot_data$Var, width = 13)) + 
+  labs(title = plot_title, y = "Probability") +
+  theme_cowplot() + scale_colour_manual(values=cbbPalette) +
+  scale_shape_manual(values = c(15, 16, 18, 17)) +
+   scale_linetype_manual(values = c(1, 1, 1, 1)) +
+  theme(legend.title = element_blank(), 
+        legend.position = "top",
+        axis.text.x = element_text(size=11))
+
+p
+return(p)
+}
+
+```
+
+
+```{r, fig.width = 10.5, fig.height = 6.5}
+#| label: produce-c4-plot
+
+plot_lca_function(
+  model_name = model_c4, 
+  item_num = 5,
+  class_num = 4,
+  item_labels = c("Lenient Rules (E-Cig)","Parental Use (E-Cig)",
+                  "Lack of Parental Knowledge","Lenient Rules (Burned)",
+                  "Parental Use (Burned)"),
+  class_labels = c( "E-Cig Favorable", "Lenient Rules", "Consistently Strict",
+                   "Strict but Use Burned"),
+  class_legend_order = c(3,2,4,1),
+  plot_title = "Parenting Practice Profiles (E-Cigarette) (K = 4)"
+  )
+
+```
+
+
+```{r, eval=FALSE}
+#| label: save-lca-plot
+
+ggsave(here("figures","c4_lca_plot.png"),    
+       dpi=300, height=4, width=6, units="in")    
+
+```
+
+
+
+## References
+
+# --------------------------------------------------------------------------------------
+
+Hallquist, M. N., & Wiley, J. F.
+(2018).
+MplusAutomation: An R Package for Facilitating Large-Scale Latent Variable Analyses in Mplus.
+Structural equation modeling: a multidisciplinary journal, 25(4), 621-638.
+
+Muthén, B. O., Muthén, L. K., & Asparouhov, T.
+(2017).
+Regression and mediation analysis using Mplus.
+Los Angeles, CA: Muthén & Muthén.
+
+Muthén, L.K.
+and Muthén, B.O.
+(1998-2017).
+Mplus User's Guide.
+Eighth Edition.
+Los Angeles, CA: Muthén & Muthén
+
+US Department of Education Office for Civil Rights.
+(2014). 
+Civil rights data collection data snapshot: School discipline. 
+Issue brief no. 1.
+
+R Core Team (2017).
+R: A language and environment for statistical computing.
+R Foundation for Statistical Computing, Vienna, Austria.
+URL <http://www.R-project.org/>
+
+Wickham et al., (2019).
+Welcome to the tidyverse.
+Journal of Open Source Software, 4(43), 1686, <https://doi.org/10.21105/joss.01686>
+
+# --------------------------------------------------------------------------------------

@@ -1,7 +1,8 @@
 TITLE:
 Class 2
 DATA:
-FILE = "C:/Users/chens/Desktop/useme_lca/mplus_lca_ecig_w/lca_ecig_w.dat"; 
+FILE = "C:/Users/chens/Desktop/PATHparentLCA/useme_lca/mplus_lca_ecig_w/
+lca_ecig_w.dat"; 
 VARIABLE:
 NAMES = caseid p_rule_ec p_use_ec p_know p_rule_b p_use_b c_try_ec dem_gen dem_age
      dem_inc dem_hisp weight; 
