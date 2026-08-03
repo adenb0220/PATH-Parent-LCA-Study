@@ -14,30 +14,23 @@ execute:
 
 ```{r}
 #| label: load-packages-data
-#| include: false
+#| include: true
 
 library(tidyverse)
 library(here)
 library(rio)
 library(knitr)
 library(gtsummary)
-# library(kableExtra)
 library(janitor)
-# library(scales)
-# library(survey)
-# library(modelsummary)
-#   options(modelsummary_factory_default = 'kableExtra')
-#   options(modelsummary_factory_latex = 'kableExtra')
-#   options(modelsummary_factory_html = 'kableExtra')
-# library(labelled)
+
 
 cbbPalette <- c("#009e73","#d55e00", "#A9A9A9", "#0072b999")
 
 # 1. Import data files
-df_main <- import(here("useme_data_cleaning/data/36498-7002-Data.rda"))
-df_weights <- import(here("useme_data_cleaning/data/36498-7332-Data.rda")) %>% 
+df_main <- import(here("data/36498-7002-Data.rda"))
+df_weights <- import(here("data/36498-7332-Data.rda")) %>% 
   select(PERSONID, R07_Y_C07WGT)
-df_linkage <- import(here("useme_data_cleaning/data/38008-0001-Data.rda")) %>% 
+df_linkage <- import(here("data/38008-0001-Data.rda")) %>% 
   select(PERSONID, WAVE7_INTERVIEW, WAVE7_C07_WEIGHTS)
 
 ```
